@@ -12,6 +12,7 @@ This repository holds JavaScript payload codecs for Vutility devices. These code
  - Coding Standards:
     - 100% code coverage for `index.js` files.
     - No external package references in `index.js` files.
+    - Use [@typedef](https://jsdoc.app/tags-typedef.html) to define JavaScript object fields.
  - Dependencies
     - [Node.js](https://nodejs.org/en/download) v16.17.0 or higher
     - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) v9.5.1 or higher
