@@ -79,9 +79,9 @@ function decodeUplink(input) {
   if (minimumAmpsDeciAmpere < 0) {
     result.warnings.push("Minimum amps is less than 0.");
   }
-  // TODO: Add additional warnings
-  // e.g. temperature too high, temperature too low
-  // capacitorVoltage too low, average amps too low (maybe lower than 1.2 amps?)
+  if (capacitorVoltage < 3.4) {
+    result.warnings.push("Low capacitor voltage may reduce transmit interval.");
+  }
 
   result.data = {
     ampHourAccumulation: ampHourAccumulationDeciAmpere * deciToUnitFactor,
@@ -137,9 +137,9 @@ function encodeDownlink(input) {
   }
 
   if (typeof input.data.transmitIntervalSeconds !== "undefined") {
-    if (input.data.transmitIntervalSeconds < 0) {
+    if (input.data.transmitIntervalSeconds < 60) {
       result.errors.push(
-        "Invalid downlink: transmit interval cannot be less than 0"
+        "Invalid downlink: transmit interval cannot be less than 1 min"
       );
       delete result.bytes;
       return result;
@@ -156,14 +156,14 @@ function encodeDownlink(input) {
     downlink.writeFloatLE(input.data.transmitIntervalSeconds, 2);
     downlink.writeFloatLE(0, 6);
     result.bytes = Array.from(new Uint8Array(downlink.buffer));
-    result.fPort = 2;
+    result.fPort = 3;
     return result;
   }
 
   if (typeof input.data.measurementIntervalMs !== "undefined") {
-    if (input.data.measurementIntervalMs < 0) {
+    if (input.data.measurementIntervalMs < 200) {
       result.errors.push(
-        "Invalid downlink: measurement interval cannot be less than 0 ms"
+        "Invalid downlink: measurement interval cannot be less than 200 ms"
       );
       delete result.bytes;
       return result;
@@ -181,21 +181,21 @@ function encodeDownlink(input) {
     downlink.writeFloatLE(input.data.measurementIntervalMs, 2);
     downlink.writeFloatLE(0, 6);
     result.bytes = Array.from(new Uint8Array(downlink.buffer));
-    result.fPort = 2;
+    result.fPort = 3;
     return result;
   }
 
   if (typeof input.data.lowPowerThreshold !== "undefined") {
-    if (input.data.lowPowerThreshold < 0) {
+    if (input.data.lowPowerThreshold < 1.8) {
       result.errors.push(
-        "Invalid downlink: low power threshold cannot be less than 0 v"
+        "Invalid downlink: low power threshold cannot be less than 1.8 v"
       );
       delete result.bytes;
       return result;
     }
-    if (input.data.lowPowerThreshold >= 5) {
+    if (input.data.lowPowerThreshold > 3.9) {
       result.errors.push(
-        "Invalid downlink: low power threshold cannot be greater than or equal to 5 v"
+        "Invalid downlink: low power threshold cannot be greater than 3.9 v"
       );
       delete result.bytes;
       return result;
@@ -206,7 +206,7 @@ function encodeDownlink(input) {
     downlink.writeFloatLE(input.data.lowPowerThreshold, 2);
     downlink.writeFloatLE(0, 6);
     result.bytes = Array.from(new Uint8Array(downlink.buffer));
-    result.fPort = 2;
+    result.fPort = 3;
     return result;
   }
 
@@ -215,7 +215,7 @@ function encodeDownlink(input) {
       result.bytes = [
         0x5a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
       ];
-      result.fPort = 2;
+      result.fPort = 3;
       return result;
     } else {
       result.errors.push("Invalid downlink: valid factoryReset value is true");
@@ -268,9 +268,9 @@ function decodeDownlink(input) {
       if (transmitIntervalVarianceSeconds !== 0) {
         result.warnings.push("Warning: Byte index 6-9 are not 0");
       }
-      if (transmitIntervalSeconds < 0) {
+      if (transmitIntervalSeconds < 60) {
         result.errors.push(
-          "Invalid downlink: transmitIntervalSeconds is negative"
+          "Invalid downlink: transmit interval cannot be less than 1 min"
         );
         delete result.data;
         return result;
@@ -292,9 +292,9 @@ function decodeDownlink(input) {
           "Warning: Measurement interval reserved bytes are not equal to 0"
         );
       }
-      if (measurementIntervalMs < 0) {
+      if (measurementIntervalMs < 200) {
         result.errors.push(
-          "Invalid downlink: measurement interval cannot be less than 0 ms"
+          "Invalid downlink: measurement interval cannot be less than 200 ms"
         );
         delete result.bytes;
         return result;
@@ -318,14 +318,14 @@ function decodeDownlink(input) {
       }
       if (lowPowerThreshold < 0) {
         result.errors.push(
-          "Invalid downlink: low power threshold cannot be less than 0 v"
+          "Invalid downlink: low power threshold cannot be less than 1.8 v"
         );
         delete result.bytes;
         return result;
       }
       if (lowPowerThreshold >= 5) {
         result.errors.push(
-          "Invalid downlink: low power threshold cannot be greater than or equal to 5 v"
+          "Invalid downlink: low power threshold cannot be greater than 3.9 v"
         );
         delete result.bytes;
         return result;
