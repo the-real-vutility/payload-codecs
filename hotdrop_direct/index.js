@@ -116,7 +116,21 @@ function encodeDownlink(input) {
     warnings: [],
   };
 
-  if (Object.keys(input.data).length > 1) {
+  let definedDownlinkVars = 0;
+  if (typeof input.data.transmitIntervalSeconds !== "undefined") {
+    definedDownlinkVars += 1;
+  }
+  if (typeof input.data.measurementIntervalMs !== "undefined") {
+    definedDownlinkVars += 1;
+  }
+  if (typeof input.data.lowPowerThreshold !== "undefined") {
+    definedDownlinkVars += 1;
+  }
+  if (typeof input.data.factoryReset !== "undefined") {
+    definedDownlinkVars += 1;
+  }
+
+  if (definedDownlinkVars > 1) {
     result.errors.push("Invalid downlink: More than one downlink type defined");
     delete result.bytes;
     return result;
