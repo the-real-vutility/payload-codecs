@@ -22,13 +22,8 @@ function decodeUplink(input) {
   const raw = Buffer.from(input.bytes);
 
   // Uplink payload must be 11 bytes long.
-  if (raw.byteLength > 11) {
-    result.errors.push("Payload length exceeds 11 bytes");
-    delete result.data;
-    return result;
-  }
-  if (raw.byteLength < 11) {
-    result.errors.push("Payload length is less than 11 bytes");
+  if (raw.byteLength != 11) {
+    result.errors.push("Payload length must be 11 bytes");
     delete result.data;
     return result;
   }
@@ -121,19 +116,13 @@ function encodeDownlink(input) {
     warnings: [],
   };
 
-  if (typeof input.data.transmitIntervalSeconds !== "undefined") {
-    if (
-      typeof input.data.measurementIntervalMs !== "undefined" ||
-      typeof input.data.lowPowerThreshold !== "undefined" ||
-      typeof input.data.factoryReset !== "undefined"
-    ) {
-      result.errors.push(
-        "Invalid downlink: More than one downlink type defined"
-      );
-      delete result.bytes;
-      return result;
-    }
+  if (Object.keys(input.data).length > 1) {
+    result.errors.push("Invalid downlink: More than one downlink type defined");
+    delete result.bytes;
+    return result;
+  }
 
+  if (typeof input.data.transmitIntervalSeconds !== "undefined") {
     if (input.data.transmitIntervalSeconds < 0) {
       result.errors.push(
         "Invalid downlink: transmit interval cannot be less than 0"
@@ -158,16 +147,6 @@ function encodeDownlink(input) {
   }
 
   if (typeof input.data.measurementIntervalMs !== "undefined") {
-    if (
-      typeof input.data.lowPowerThreshold !== "undefined" ||
-      typeof input.data.factoryReset !== "undefined"
-    ) {
-      result.errors.push(
-        "Invalid downlink: More than one downlink type defined"
-      );
-      delete result.bytes;
-      return result;
-    }
     if (input.data.measurementIntervalMs < 0) {
       result.errors.push(
         "Invalid downlink: measurement interval cannot be less than 0 ms"
@@ -193,13 +172,6 @@ function encodeDownlink(input) {
   }
 
   if (typeof input.data.lowPowerThreshold !== "undefined") {
-    if (typeof input.data.factoryReset !== "undefined") {
-      result.errors.push(
-        "Invalid downlink: More than one downlink type defined"
-      );
-      delete result.bytes;
-      return result;
-    }
     if (input.data.lowPowerThreshold < 0) {
       result.errors.push(
         "Invalid downlink: low power threshold cannot be less than 0 v"

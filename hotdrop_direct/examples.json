@@ -92,7 +92,7 @@
       "recvTime": "2023-05-02T20:00:00.000+00:00"
     },
     "output": {
-      "errors": ["Payload length exceeds 11 bytes"],
+      "errors": ["Payload length must be 11 bytes"],
       "warnings": []
     }
   },
@@ -105,7 +105,7 @@
       "recvTime": "2023-05-02T20:00:00.000+00:00"
     },
     "output": {
-      "errors": ["Payload length is less than 11 bytes"],
+      "errors": ["Payload length must be 11 bytes"],
       "warnings": []
     }
   },
