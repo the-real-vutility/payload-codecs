@@ -128,3 +128,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+# Ignore package-lock.json - it is only used for jest and dependencies, not for functionality of codec
+package-lock.json
