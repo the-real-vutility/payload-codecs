@@ -1,0 +1,47 @@
+[
+  {
+    "type": "downlink-encode",
+    "description": "Error: low power threshold not one of set values",
+    "input": {
+      "data": {
+        "lowPowerThreshold": 3.0
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: low power threshold is not 3.9, 3.4, 2.1, or 1.8"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: measurement interval not one of set values",
+    "input": {
+      "data": {
+        "measurementIntervalMs": 3000
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: measurement interval is not 200 ms, 500 ms, 1000 ms, 2000 ms, 10000 ms"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: transmit interval not one of set values",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 153
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: transmit interval is not 1 min, 2 mins, 5 mins, 15 mins or 30 mins"
+      ],
+      "warnings": []
+    }
+  }
+]

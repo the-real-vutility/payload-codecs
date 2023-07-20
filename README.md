@@ -1,6 +1,6 @@
 # payload-codecs
 
-This repository holds JavaScript payload codecs for Vutility devices. These codecs follow an API as specified by the [LoRa Alliance.](https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api)
+This repository holds JavaScript payload codecs for Vutility devices. These codecs follow an API as specified by the [LoRa Alliance.](https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api). Optionally, codecs can also include a version or versions of the index.js file targetted towards different ES versions.
 
 | Device | Vutility Packet Type |  File Name | Description |
 | --- | --- | --- | --- |
