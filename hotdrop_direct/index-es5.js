@@ -1,7 +1,7 @@
 // This version of the index file contains a decodeUplink function that does not use
 // the Buffer or ArrayBuffer or TypedArray Classes.
-// This version is compatible with ES 5.1
-// Due to limitations in ES 5.1, only a limited set of downlink values are permitted
+// This version is compatible with ES5
+// Due to limitations in ES5, only a limited set of downlink values are permitted.
 // Because of this, the decodeDownlink function is not implemented
 
 /**

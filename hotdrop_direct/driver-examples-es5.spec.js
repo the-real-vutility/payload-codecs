@@ -1,12 +1,12 @@
-const driver = require("./index-es5dot1.js");
+const driver = require("./index-es5.js");
 const examples = require("./examples.json");
-const examples_es5dot1 = require("./examples-es5dot1.json");
+const examples_es5 = require("./examples-es5.json");
 
 /*..............
 Test suites
 ..............*/
-describe("Decode uplink ES5.1", () => {
-  var totalExamples = examples.concat(examples_es5dot1);
+describe("Decode uplink ES5", () => {
+  var totalExamples = examples.concat(examples_es5);
   totalExamples.forEach((example) => {
     if (example.type === "uplink") {
       it(example.description, () => {
@@ -31,8 +31,8 @@ describe("Decode uplink ES5.1", () => {
   });
 });
 
-describe("Encode downlink ES5.1", () => {
-  var totalExamples = examples.concat(examples_es5dot1);
+describe("Encode downlink ES5", () => {
+  var totalExamples = examples.concat(examples_es5);
   totalExamples.forEach((example) => {
     if (example.type === "downlink-encode") {
       it(example.description, () => {
