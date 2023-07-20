@@ -64,6 +64,27 @@
   },
   {
     "type": "uplink",
+    "description": "max uplink",
+    "input": {
+      "bytes": [50, 255, 255, 255, 255, 255, 255, 255, 100, 255, 255],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "ampHourAccumulation": 429496729.5,
+        "averageAmps": 6553.5,
+        "maximumAmps": 23264.925000000003,
+        "minimumAmps": 0,
+        "capacitorVoltage": 5,
+        "temperatureCelsius": 80
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
     "description": "warning: minimum amps below 0",
     "input": {
       "bytes": [50, 0, 0, 13, 232, 0, 120, 100, 150, 255, 17],

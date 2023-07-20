@@ -1,11 +1,12 @@
 const driver = require("./index.js");
 const examples = require("./examples.json");
+const es5dot1driver = require("./index-es5dot1.js");
 
 /*..............
 Test suites
 ..............*/
 
-describe("Decode uplink", () => {
+describe("Decode uplink index.js", () => {
   examples.forEach((example) => {
     if (example.type === "uplink") {
       it(example.description, () => {
@@ -30,7 +31,7 @@ describe("Decode uplink", () => {
   });
 });
 
-describe("Decode downlink", () => {
+describe("Decode downlink index.js", () => {
   examples.forEach((example) => {
     if (example.type === "downlink-decode") {
       it(example.description, () => {
@@ -89,7 +90,7 @@ describe("Decode downlink", () => {
   });
 });
 
-describe("Encode downlink", () => {
+describe("Encode downlink index.js", () => {
   examples.forEach((example) => {
     if (example.type === "downlink-encode") {
       it(example.description, () => {
