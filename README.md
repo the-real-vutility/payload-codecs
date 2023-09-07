@@ -1,12 +1,16 @@
-# payload-codecs
+# Vutility Payload Codecs
 
-This repository holds JavaScript payload codecs for Vutility devices. These codecs follow an API as specified by the [LoRa Alliance.](https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api). Optionally, codecs can also include a version or versions of the index.js file targetted towards different ES versions.
+This repository holds JavaScript payload codecs for Vutility devices. These codecs follow an API as specified by the [LoRa Alliance.](https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api). Optionally, codecs may also include a version or versions of the index.js file targetted towards different ES versions. Below is a table with the supported devices and packets.
 
-| Device | Vutility Packet Type |  File Name | Description |
-| --- | --- | --- | --- |
-| `hotdrop` |  `50` | `hotdrop_direct` | `Vutility HotDrop Direct Comprehensive Uplink - avg amps, min amps, max amps, temp, cap volt.` |
+## Codecs
+| Device | Codec | Codec Info | Description | Uplink Decode | Downlink Encode | Downlink Decode
+| --- | --- | --- | --- | :---: | :---: | :---: |
+| `hotdrop direct` | [index.js](hotdrop_direct/index.js) | [readme](hotdrop_direct/index-readme.md) | HotDrop Direct Codec | ✅ | ✅ | ✅
+| `hotdrop direct` | [index-es5.js](hotdrop_direct/index-es5.js) | [readme](hotdrop_direct/index-es5-readme.md)  | ES5 Compatible HotDrop Direct Codec | ✅ | ✅* | ❌
 
-## Development
+
+
+### Development Notes
  - Framework: node.js
  - Testing Framework: [jest](https://jestjs.io/)
  - Coding Standards:
@@ -30,7 +34,7 @@ To update npm to the latest version, run the following command:
 npm install -g npm
 ```
 
-## Testing
+### Testing
 
 - Change working folder to the codec file to test. e.g. `hotdrop_direct`.
 - To execute tests, run the following command:
