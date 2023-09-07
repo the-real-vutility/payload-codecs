@@ -2,30 +2,15 @@
 
 This repository holds JavaScript payload codecs for Vutility devices. These codecs follow an API as specified by the [LoRa Alliance.](https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api). Optionally, codecs may also include a version or versions of the index.js file targetted towards different ES versions. Below is a table with the supported devices and packets.
 
-### Codecs
-| Device | Vutility Packet Type | Directory | Description | Uplink Decode | Downlink Encode | Downlink Decode
-| --- | :---: | --- | --- | :---: | :---: | :---: |
-| `hotdrop` |  `50` | [index.js](hotdrop_direct/index.js) | HotDrop Direct Codec | ✅ | ✅ | ✅
-| `hotdrop` |  `50` | [index-es5.js](hotdrop_direct/index-es5.js) | ES5 Compatible HotDrop Direct Codec | ✅ | ✅* | ❌
-
-### Packet Information
-#### Packet 50 Measurements
-| Name | Description |
-| --- | --- |
-| `ampHourAccumulation` | |
-| `averageAmps` | |
-| `maximumAmps` | |
-| `minimumAmps` | |
-| `capacitorVoltage` | |
-| `temperatureCelsius` | |
+## Codecs
+| Device | Codec | Codec Info | Description | Uplink Decode | Downlink Encode | Downlink Decode
+| --- | --- | --- | --- | :---: | :---: | :---: |
+| `hotdrop direct` | [index.js](hotdrop_direct/index.js) | [readme](hotdrop_direct/index-readme.md) | HotDrop Direct Codec | ✅ | ✅ | ✅
+| `hotdrop direct` | [index-es5.js](hotdrop_direct/index-es5.js) | [readme](hotdrop_direct/index-es5-readme.md)  | ES5 Compatible HotDrop Direct Codec | ✅ | ✅* | ❌
 
 
 
-
-
-
-
-## Development Notes
+### Development Notes
  - Framework: node.js
  - Testing Framework: [jest](https://jestjs.io/)
  - Coding Standards:
@@ -49,7 +34,7 @@ To update npm to the latest version, run the following command:
 npm install -g npm
 ```
 
-## Testing
+### Testing
 
 - Change working folder to the codec file to test. e.g. `hotdrop_direct`.
 - To execute tests, run the following command:
