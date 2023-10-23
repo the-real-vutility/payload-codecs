@@ -102,7 +102,7 @@ Example:
 
 ##### Low Power Threshold
 `lowPowerThreshold` is the capacitor voltage at which the hotdrop will change into low power mode.
-The minimum value is 1.8 volts, the maximum value is 3.9 volts.
+The minimum value is 2.1 volts, the maximum value is 3.9 volts.
 
 Example:
 ```
@@ -141,4 +141,3 @@ Example:
 | 3.9 | [50, 00, 9A, 99, 79, 40, 00, 00, 00, 00] | UACamXlAAAAAAA== | ❌ |
 | 3.4 | [50, 00, 9A, 99, 59, 40, 00, 00, 00, 00] | UACamVlAAAAAAA== | ✅ |
 | 2.1 | [50, 00, 66, 66, 06, 40, 00, 00, 00, 00] | UABmZgZAAAAAAA== | ❌ |
-| 1.8 | [50, 00, 66, 66, E6, 3F, 00, 00, 00, 00] | UABmZuY/AAAAAA== | ❌ |

@@ -257,9 +257,9 @@ function encodeDownlink(input) {
   if (typeof input.data.lowPowerThreshold !== "undefined") {
     var lowPowerTolerance = 0.000001;
     // Have leniant lower tolerance due to floating point
-    if (input.data.lowPowerThreshold + lowPowerTolerance < 1.8) {
+    if (input.data.lowPowerThreshold + lowPowerTolerance < 2.1) {
       result.errors.push(
-        "Invalid downlink: low power threshold cannot be less than 1.8 v"
+        "Invalid downlink: low power threshold cannot be less than 2.1 v"
       );
       delete result.bytes;
       return result;
@@ -282,9 +282,6 @@ function encodeDownlink(input) {
     var lowPowerThreshold2dot1VDownlinkBytes = [
       0x50, 0x00, 0x66, 0x66, 0x06, 0x40, 0x00, 0x00, 0x00, 0x00,
     ];
-    var lowPowerThreshold1dot8VDownlinkBytes = [
-      0x50, 0x00, 0x66, 0x66, 0xe6, 0x3f, 0x00, 0x00, 0x00, 0x00,
-    ];
 
     if (
       input.data.lowPowerThreshold > 3.9 - lowPowerTolerance &&
@@ -301,14 +298,9 @@ function encodeDownlink(input) {
       input.data.lowPowerThreshold < 2.1 + lowPowerTolerance
     ) {
       result.bytes = lowPowerThreshold2dot1VDownlinkBytes;
-    } else if (
-      input.data.lowPowerThreshold > 1.8 - lowPowerTolerance &&
-      input.data.lowPowerThreshold < 1.8 + lowPowerTolerance
-    ) {
-      result.bytes = lowPowerThreshold1dot8VDownlinkBytes;
     } else {
       result.errors.push(
-        "Invalid downlink: low power threshold is not 3.9, 3.4, 2.1, or 1.8"
+        "Invalid downlink: low power threshold is not 3.9, 3.4, or 2.1"
       );
       delete result.bytes;
       return result;
