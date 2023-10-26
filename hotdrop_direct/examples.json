@@ -400,22 +400,7 @@
   },
   {
     "type": "downlink-encode",
-    "description": "low power threshold (1.8 v)",
-    "input": {
-      "data": {
-        "lowPowerThreshold": 1.8
-      }
-    },
-    "output": {
-      "bytes": [80, 0, 102, 102, 230, 63, 0, 0, 0, 0],
-      "fPort": 3,
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-encode",
-    "description": "Error: low power threshold less than 1.8 v",
+    "description": "Error: low power threshold less than 2.1 v",
     "input": {
       "data": {
         "lowPowerThreshold": -0.1
@@ -423,7 +408,7 @@
     },
     "output": {
       "errors": [
-        "Invalid downlink: low power threshold cannot be less than 1.8 v"
+        "Invalid downlink: low power threshold cannot be less than 2.1 v"
       ],
       "warnings": []
     }
@@ -490,7 +475,7 @@
     "input": {
       "data": {
         "transmitIntervalSeconds": 60,
-        "lowPowerThreshold": 1.8
+        "lowPowerThreshold": 2.1
       }
     },
     "output": {
@@ -504,7 +489,7 @@
     "input": {
       "data": {
         "measurementIntervalMs": 1000,
-        "lowPowerThreshold": 1.8
+        "lowPowerThreshold": 2.1
       }
     },
     "output": {
@@ -517,7 +502,7 @@
     "description": "Error: More than one downlink defined",
     "input": {
       "data": {
-        "lowPowerThreshold": 1.8,
+        "lowPowerThreshold": 2.1,
         "factoryReset": true
       }
     },
@@ -830,31 +815,15 @@
   },
   {
     "type": "downlink-decode",
-    "description": "low power threshold (1.8 v)",
-    "input": {
-      "bytes": [80, 0, 102, 102, 230, 63, 0, 0, 0, 0],
-      "fPort": 2,
-      "recvTime": "2023-05-02T20:00:00.000+00:00"
-    },
-    "output": {
-      "data": {
-        "lowPowerThreshold": 1.8
-      },
-      "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-decode",
     "description": "Warning: low power threshold reserved bytes not 0",
     "input": {
-      "bytes": [80, 0, 102, 102, 230, 63, 0, 0, 1, 0],
+      "bytes": [80, 0, 102, 102, 6, 64, 0, 0, 1, 0],
       "fPort": 2,
       "recvTime": "2023-05-02T20:00:00.000+00:00"
     },
     "output": {
       "data": {
-        "lowPowerThreshold": 1.8
+        "lowPowerThreshold": 2.1
       },
       "errors": [],
       "warnings": [
@@ -864,7 +833,7 @@
   },
   {
     "type": "downlink-decode",
-    "description": "Error: low power threshold less than 1.8 v",
+    "description": "Error: low power threshold less than 2.1 v",
     "input": {
       "bytes": [80, 0, 0, 0, 128, 191, 0, 0, 0, 0],
       "fPort": 2,
@@ -872,7 +841,7 @@
     },
     "output": {
       "errors": [
-        "Invalid downlink: low power threshold cannot be less than 1.8 v"
+        "Invalid downlink: low power threshold cannot be less than 2.1 v"
       ],
       "warnings": []
     }

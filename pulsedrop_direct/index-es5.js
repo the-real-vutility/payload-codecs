@@ -6,7 +6,7 @@
 
 /**
  * @typedef {Object} DecodedUplink
- * @property {HotDropDirectData} data - The open JavaScript object representing the decoded uplink payload when no errors occurred
+ * @property {PulseDropDirectData} data - The open JavaScript object representing the decoded uplink payload when no errors occurred
  * @property {string[]} errors - A list of error messages while decoding the uplink payload
  * @property {string[]} warnings - A list of warning messages that do not prevent the driver from decoding the uplink payload
  */
@@ -35,8 +35,8 @@ function decodeUplink(input) {
 
   // Packet ID - 1 byte
   var packetId = rawBytesArray[0];
-  if (packetId !== 50) {
-    result.errors.push("Payload packet ID is not equal to 50");
+  if (packetId !== 28) {
+    result.errors.push("Payload packet ID is not equal to 28");
     delete result.data;
     return result;
   }
@@ -44,61 +44,36 @@ function decodeUplink(input) {
   // Constant factors for formulas
   var capacitorVoltageFactor = 5.0 / 255.0;
   var temperatureCelsiusFactor = 120.0 / 255.0;
-  var deciToUnitFactor = 0.1;
-
-  // Amp hour accumulation - 4 bytes
-  // 32-bit unsigned integer in network byte order (MSB/BE) reported in deci-ampere-hour (dAh)
-  var ampHourAccumulationDeciAmpere =
-    ((rawBytesArray[1] << 24) +
-      (rawBytesArray[2] << 16) +
-      (rawBytesArray[3] << 8) +
-      rawBytesArray[4]) >>>
-    0;
-
-  // Average amps - 2 bytes
-  // 16-bit unsigned integer in network byte order (MSB/BE) reported in deci-ampere (dA),
-  // this average represents the entire time since the last transmit (one entire transmit period)
-  var averageAmpsDeciAmpere =
-    ((rawBytesArray[5] << 8) + rawBytesArray[6]) >>> 0;
-
-  // Max Offset - 1 byte
-  // 8-bit unsigned integer representing the percent offset above the Average amps value.
-  var maxOffset = rawBytesArray[7];
-
-  // Min Offset - 1 byte
-  // 8-bit unsigned integer representing the percent offset below the Average amps value.
-  var minOffset = rawBytesArray[8];
 
   // Capacitor Voltage Scalar - 1 byte
   // 8-bit unsigned integer representing the capacitor voltage.
   // (as if the integer range from 0-255 is scaled to between 0.0V and 5.0V)
-  var capacitorVoltageScalar = rawBytesArray[9];
+  var capacitorVoltageScalar = rawBytesArray[1];
 
   // Temperature Scalar
   // 8-bit unsigned integer representing the temperature.
   // (as if the integer range from 0-255 is scaled to between -40C and 80C)
-  var temperatureScalar = rawBytesArray[10];
+  var temperatureScalar = rawBytesArray[2];
+
+  // PulseCount - 4 bytes
+  // 32-bit unsigned integer in network byte order (MSB/BE)
+  var pulseCount =
+    ((rawBytesArray[3] << 24) +
+      (rawBytesArray[4] << 16) +
+      (rawBytesArray[5] << 8) +
+      rawBytesArray[6]) >>>
+    0;
 
   // Calculated fields
-  var maximumAmpsDeciAmpere =
-    averageAmpsDeciAmpere * ((100 + maxOffset) / 100.0);
-  var minimumAmpsDeciAmpere =
-    averageAmpsDeciAmpere * ((100 - minOffset) / 100.0);
   var capacitorVoltage = capacitorVoltageFactor * capacitorVoltageScalar;
   var temperatureCelsius = temperatureCelsiusFactor * temperatureScalar - 40;
 
-  if (minimumAmpsDeciAmpere < 0) {
-    result.warnings.push("Minimum amps is less than 0.");
-  }
-  if (capacitorVoltage < 3.4) {
-    result.warnings.push("Low capacitor voltage may reduce transmit interval.");
+  if (capacitorVoltage < 2.5) {
+    result.warnings.push("Low capacitor voltage indicates depleted battery. System may cease operation soon.");
   }
 
   result.data = {
-    ampHourAccumulation: ampHourAccumulationDeciAmpere * deciToUnitFactor,
-    averageAmps: averageAmpsDeciAmpere * deciToUnitFactor,
-    maximumAmps: maximumAmpsDeciAmpere * deciToUnitFactor,
-    minimumAmps: minimumAmpsDeciAmpere * deciToUnitFactor,
+    pulseCount: pulseCount,
     capacitorVoltage: capacitorVoltage,
     temperatureCelsius: temperatureCelsius,
   };
@@ -129,12 +104,6 @@ function encodeDownlink(input) {
 
   var definedDownlinkVars = 0;
   if (typeof input.data.transmitIntervalSeconds !== "undefined") {
-    definedDownlinkVars += 1;
-  }
-  if (typeof input.data.measurementIntervalMs !== "undefined") {
-    definedDownlinkVars += 1;
-  }
-  if (typeof input.data.lowPowerThreshold !== "undefined") {
     definedDownlinkVars += 1;
   }
   if (typeof input.data.factoryReset !== "undefined") {
@@ -192,115 +161,6 @@ function encodeDownlink(input) {
     } else {
       result.errors.push(
         "Invalid downlink: transmit interval is not 1 min, 2 mins, 5 mins, 15 mins or 30 mins"
-      );
-      delete result.bytes;
-      return result;
-    }
-    result.fPort = 3;
-    return result;
-  }
-
-  if (typeof input.data.measurementIntervalMs !== "undefined") {
-    if (input.data.measurementIntervalMs < 200) {
-      result.errors.push(
-        "Invalid downlink: measurement interval cannot be less than 200 ms"
-      );
-      delete result.bytes;
-      return result;
-    }
-    if (input.data.measurementIntervalMs > 10000) {
-      result.errors.push(
-        "Invalid downlink: measurement interval cannot be greater than 10000 ms"
-      );
-      delete result.bytes;
-      return result;
-    }
-
-    var measurementInterval200MsDownlinkBytes = [
-      0x4d, 0x00, 0x00, 0x00, 0x48, 0x43, 0x00, 0x00, 0x00, 0x00,
-    ];
-    var measurementInterval500MsDownlinkBytes = [
-      0x4d, 0x00, 0x00, 0x00, 0xfa, 0x43, 0x00, 0x00, 0x00, 0x00,
-    ];
-    var measurementInterval1000MsDownlinkBytes = [
-      0x4d, 0x00, 0x00, 0x00, 0x7a, 0x44, 0x00, 0x00, 0x00, 0x00,
-    ];
-    var measurementInterval2000MsDownlinkBytes = [
-      0x4d, 0x00, 0x00, 0x00, 0xfa, 0x44, 0x00, 0x00, 0x00, 0x00,
-    ];
-    var measurementInterval10000MsDownlinkBytes = [
-      0x4d, 0x00, 0x00, 0x40, 0x1c, 0x46, 0x00, 0x00, 0x00, 0x00,
-    ];
-
-    if (input.data.measurementIntervalMs === 200) {
-      result.bytes = measurementInterval200MsDownlinkBytes;
-    } else if (input.data.measurementIntervalMs === 500) {
-      result.bytes = measurementInterval500MsDownlinkBytes;
-    } else if (input.data.measurementIntervalMs === 1000) {
-      result.bytes = measurementInterval1000MsDownlinkBytes;
-    } else if (input.data.measurementIntervalMs === 2000) {
-      result.bytes = measurementInterval2000MsDownlinkBytes;
-    } else if (input.data.measurementIntervalMs === 10000) {
-      result.bytes = measurementInterval10000MsDownlinkBytes;
-    } else {
-      result.errors.push(
-        "Invalid downlink: measurement interval is not 200 ms, 500 ms, 1000 ms, 2000 ms, 10000 ms"
-      );
-      delete result.bytes;
-      return result;
-    }
-
-    result.fPort = 3;
-    return result;
-  }
-
-  if (typeof input.data.lowPowerThreshold !== "undefined") {
-    var lowPowerTolerance = 0.000001;
-    // Have leniant lower tolerance due to floating point
-    if (input.data.lowPowerThreshold + lowPowerTolerance < 2.1) {
-      result.errors.push(
-        "Invalid downlink: low power threshold cannot be less than 2.1 v"
-      );
-      delete result.bytes;
-      return result;
-    }
-    // Have leniant upper tolerance due to floating point
-    if (input.data.lowPowerThreshold - lowPowerTolerance > 3.9) {
-      result.errors.push(
-        "Invalid downlink: low power threshold cannot be greater than 3.9 v"
-      );
-      delete result.bytes;
-      return result;
-    }
-
-    var lowPowerThreshold3dot9VDownlinkBytes = [
-      0x50, 0x00, 0x9a, 0x99, 0x79, 0x40, 0x00, 0x00, 0x00, 0x00,
-    ];
-    var lowPowerThreshold3dot4VDownlinkBytes = [
-      0x50, 0x00, 0x9a, 0x99, 0x59, 0x40, 0x00, 0x00, 0x00, 0x00,
-    ];
-    var lowPowerThreshold2dot1VDownlinkBytes = [
-      0x50, 0x00, 0x66, 0x66, 0x06, 0x40, 0x00, 0x00, 0x00, 0x00,
-    ];
-
-    if (
-      input.data.lowPowerThreshold > 3.9 - lowPowerTolerance &&
-      input.data.lowPowerThreshold < 3.9 + lowPowerTolerance
-    ) {
-      result.bytes = lowPowerThreshold3dot9VDownlinkBytes;
-    } else if (
-      input.data.lowPowerThreshold > 3.4 - lowPowerTolerance &&
-      input.data.lowPowerThreshold < 3.4 + lowPowerTolerance
-    ) {
-      result.bytes = lowPowerThreshold3dot4VDownlinkBytes;
-    } else if (
-      input.data.lowPowerThreshold > 2.1 - lowPowerTolerance &&
-      input.data.lowPowerThreshold < 2.1 + lowPowerTolerance
-    ) {
-      result.bytes = lowPowerThreshold2dot1VDownlinkBytes;
-    } else {
-      result.errors.push(
-        "Invalid downlink: low power threshold is not 3.9, 3.4, or 2.1"
       );
       delete result.bytes;
       return result;

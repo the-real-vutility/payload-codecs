@@ -9,7 +9,7 @@
     },
     "output": {
       "errors": [
-        "Invalid downlink: low power threshold is not 3.9, 3.4, 2.1, or 1.8"
+        "Invalid downlink: low power threshold is not 3.9, 3.4, or 2.1"
       ],
       "warnings": []
     }

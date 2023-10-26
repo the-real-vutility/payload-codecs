@@ -1,4 +1,4 @@
-# Hotdrop Direct Codec ES5
+# PulseDrop Direct Codec ES5
 
 This codec targets ES5. If the desired environment does not support newer javascript versions, use this file.
 
@@ -9,30 +9,23 @@ This codec targets ES5. If the desired environment does not support newer javasc
 | `decodeDownlink`| ❌ | |
 
 
-
 ## `decodeUplink`
 
 Every decoded packet will contain the following measurements in a json object.
 
 | Name | Description | Units |
 | --- | --- | :---: |
-| `ampHourAccumulation` | The total amphour accumulation. | Ah |
-| `averageAmps` | The average amps since the last transmit. | A |
-| `maximumAmps` | The maximum amps since the last transmit. | A |
-| `minimumAmps` | The minimum amps since the last transmit. | A |
+| `pulseCount` | The total pulses counted by device. | Count |
 | `capacitorVoltage` | The capacitor voltage at time of transmit. | V |
 | `temperatureCelsius` | The temperature at time of transmit. | °C |
 
-Example: 
+Example:
 ```
-"output": 
+"output":
 {
-    "data": 
+    "data":
     {
-        "ampHourAccumulation": 356,
-        "averageAmps": 12,
-        "maximumAmps": 25.32,
-        "minimumAmps": 2.52,
+        "pulseCount": 39823,
         "capacitorVoltage": 3.8627450980392157,
         "temperatureCelsius": 18.823529411764703
     },
@@ -49,8 +42,6 @@ To encode a downlink, use **one and only one** of the following downlinks as a f
 | --- |
 | `factoryReset` |
 | `transmitIntervalSeconds` |
-| `measurementIntervalMs` |
-| `lowPowerThreshold` |
 
 #### Factory Reset
 
@@ -58,7 +49,7 @@ To encode a downlink, use **one and only one** of the following downlinks as a f
 
 Example:
 ```
-"data": 
+"data":
 {
     "factoryReset": true
 }
@@ -70,32 +61,9 @@ Example:
 
 Example:
 ```
-"data": 
+"data":
 {
     "transmitIntervalSeconds": 60
-}
-```
-
-#### Measurement Interval
-`measurementIntervalMs` is the amount of time between measurement readings. The only valid values are the values under 'Example Downlinks'.
-
-Example:
-```
-"data": 
-{
-    "measurementIntervalMs": 1000
-}
-```
-
-
-##### Low Power Threshold
-`lowPowerThreshold` is the capacitor voltage at which the hotdrop will change into low power mode. The only valid values are the values under 'Example Downlinks'.
-
-Example:
-```
-"data": 
-{
-    "lowPowerThreshold": 3.4
 }
 ```
 
@@ -113,18 +81,3 @@ Example:
 | 300 | [54, 00, 00, 00, 96, 43, 00, 00, 00, 00] | VAAAAJZDAAAAAA== | ❌ |
 | 1500 | [54, 00, 00, 00, 61, 44, 00, 00, 00, 00] | VAAAAGFEAAAAAA== | ❌ |
 | 3000 | [54, 00, 00, 00, E1, 44, 00, 00, 00, 00] | VAAAAOFEAAAAAA== | ❌ |
-
-
-| Measurement Interval (ms) | Raw Packet | Base64 Encoding | Default |
-| --- | --- | --- | :---: |
-| 200 | [4D, 00, 00, 00, 48, 43, 00, 00, 00, 00] | TQAAAEhDAAAAAA== | ❌ |
-| 500 | [4D, 00, 00, 00, FA, 43, 00, 00, 00, 00] | TQAAAPpDAAAAAA== | ❌ |
-| 1000 | [4D, 00, 00, 00, 7A, 44, 00, 00, 00, 00] | TQAAAHpEAAAAAA== | ✅ |
-| 2000 | [4D, 00, 00, 00, FA, 44, 00, 00, 00, 00] | TQAAAPpEAAAAAA== | ❌ |
-| 10000 | [4D, 00, 00, 40, 1C, 46, 00, 00, 00, 00] | TQAAQBxGAAAAAA== | ❌ |
-
-| Low Power Threshold (v) | Raw Packet | Base64 Encoding | Default |
-| --- | --- | --- | :---: |
-| 3.9 | [50, 00, 9A, 99, 79, 40, 00, 00, 00, 00] | UACamXlAAAAAAA== | ❌ |
-| 3.4 | [50, 00, 9A, 99, 59, 40, 00, 00, 00, 00] | UACamVlAAAAAAA== | ✅ |
-| 2.1 | [50, 00, 66, 66, 06, 40, 00, 00, 00, 00] | UABmZgZAAAAAAA== | ❌ |
