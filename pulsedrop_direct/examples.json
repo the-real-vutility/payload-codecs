@@ -224,7 +224,7 @@
       }
     },
     "output": {
-      "bytes": [90, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "bytes": [70, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "fPort": 3,
       "errors": [],
       "warnings": []
@@ -400,7 +400,7 @@
     "type": "downlink-decode",
     "description": "factory reset",
     "input": {
-      "bytes": [90, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "bytes": [70, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "fPort": 2,
       "recvTime": "2023-05-02T20:00:00.000+00:00"
     },
@@ -414,7 +414,7 @@
     "type": "downlink-decode",
     "description": "Error: factory reset reserved bytes not 0",
     "input": {
-      "bytes": [90, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+      "bytes": [70, 0, 0, 0, 0, 0, 0, 1, 0, 0],
       "fPort": 2,
       "recvTime": "2023-05-02T20:00:00.000+00:00"
     },
