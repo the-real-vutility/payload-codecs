@@ -132,3 +132,6 @@ dist
 
 # Ignore package-lock.json - it is only used for jest and dependencies, not for functionality of codec
 package-lock.json
+
+# Apple OSX
+.DS_Store
