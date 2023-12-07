@@ -597,16 +597,16 @@
     "description": "Transmit Packet Schedule Long",
     "input": {
       "data": {
-        "packetTransmitSchedule": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        "packetTransmitSchedule": [40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
       }
     },
     "output": {
       "bytes": [0, 48, 60,
-                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
       "fPort": 3,
       "errors": [],
       "warnings": []
@@ -630,13 +630,26 @@
     "description": "Transmit Packet Schedule Too Long",
     "input": {
       "data": {
-        "packetTransmitSchedule": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        "packetTransmitSchedule": [40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
       }
     },
     "output": {
       "errors": ["Invalid downlink: Packet transmit schedule cannot be longer than 60 elements"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode-no-es5",
+    "description": "Transmit Packet Schedule Gap Only",
+    "input": {
+      "data": {
+        "packetTransmitSchedule": [0]
+      }
+    },
+    "output": {
+      "errors": ["Invalid downlink: Packet transmit schedule must contain at least one transmitting element"],
       "warnings": []
     }
   }

@@ -203,25 +203,34 @@ function encodeDownlink(input) {
     }
 
     const validIDList = [0, 40, 41, 42, 43, 44, 45];
-    let bufferSize = Math.max(input.data.packetTransmitSchedule.length + 3, 10);
-    let downlink = Buffer.alloc(bufferSize);
+    let scheduleValid = false;
+    let downlink = Buffer.alloc(input.data.packetTransmitSchedule.length + 3);
     downlink.writeUInt16BE(0x0030, 0);
     downlink.writeUInt8(input.data.packetTransmitSchedule.length, 2);
-    for (let index = 0; index < (bufferSize - 3); index++) {
-      if (index < input.data.packetTransmitSchedule.length) {
-        let id = input.data.packetTransmitSchedule[index];
-        if (!validIDList.includes(id)) {
-          result.warnings.push("Invalid packet ID replaced by gap in transmit schedule");
-          downlink.writeUInt8(0, index + 3);
-        } else {
-          downlink.writeUInt8(id, index + 3);
-        }
+    for (let index = 0; index < input.data.packetTransmitSchedule.length; index++) {
+      let id = input.data.packetTransmitSchedule[index];
+      if (!validIDList.includes(id)) {
+        result.warnings.push("Invalid packet ID replaced by gap in transmit schedule");
+        downlink.writeUInt8(0, index + 3);
       } else {
-        downlink.writeUInt8(0);
+        downlink.writeUInt8(id, index + 3);
+        if (id != 0) {
+          // Enforce that there is at least one non-gap packet in schedule
+          scheduleValid = true;
+        }
       }
     }
-    result.bytes = Array.from(new Uint8Array(downlink.buffer));
-    result.fPort = 3;
+
+    if (scheduleValid) {
+      result.bytes = Array.from(new Uint8Array(downlink.buffer));
+      result.fPort = 3;
+    }
+    else {
+      result.errors.push(
+        "Invalid downlink: Packet transmit schedule must contain at least one transmitting element"
+      );
+      delete result.bytes;
+    }
     return result;
   }
 
