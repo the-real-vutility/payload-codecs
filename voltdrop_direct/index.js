@@ -303,15 +303,15 @@ function decodeDownlink(input) {
         result.errors.push(
           "Invalid downlink: transmit interval cannot be greater than 30 min"
         );
-        delete result.bytes;
+        delete result.data;
         return result;
       }
       result.data.transmitIntervalSeconds = transmitIntervalSeconds;
       break;
     case 0x30: // packet transmit schedule
-      if (raw.length < 3) {
+      if (raw.length < 4) {
         result.errors.push(
-          "Invalid downlink: transmit packet schedule downlink must be 3 bytes or greater"
+          "Invalid downlink: transmit packet schedule downlink must be 4 bytes or greater"
         );
         delete result.data;
         return result;
@@ -321,22 +321,23 @@ function decodeDownlink(input) {
         result.errors.push(
           "Invalid downlink: transmit packet schedule length field larger than input data"
         );
-        delete result.bytes;
+        delete result.data;
         return result;
       } else if (dataLength == 0) {
         result.errors.push(
-          "Invalid downlink: Packet transmit schedule must contain at least one element"
+          "Invalid downlink: Packet transmit schedule length field cannot be zero"
         );
-        delete result.bytes;
+        delete result.data;
         return result;
       } else if (dataLength > 60) {
         result.errors.push(
           "Invalid downlink: Packet transmit schedule cannot be longer than 60 elements"
         );
-        delete result.bytes;
+        delete result.data;
         return result;
       }
       const validIDList = [0, 40, 41, 42, 43, 44, 45];
+      let scheduleValid = false;
       result.data.packetTransmitSchedule = [];
       for (let index = 0; index < dataLength; index++) {
         let id = raw.readUint8(index + 3);
@@ -345,7 +346,17 @@ function decodeDownlink(input) {
           result.data.packetTransmitSchedule.push(0);
         } else {
           result.data.packetTransmitSchedule.push(id);
+          if (id != 0) {
+            // Enforce that there is at least one non-gap packet in schedule
+            scheduleValid = true;
+          }
         }
+      }
+      if (!scheduleValid) {
+        result.errors.push(
+          "Invalid downlink: Packet transmit schedule must contain at least one transmitting element"
+        );
+        delete result.data;
       }
       break;
     case 0x46: // factory reset
@@ -354,7 +365,7 @@ function decodeDownlink(input) {
     default:
       result.errors.push("Invalid downlink: unknown downlink type");
       delete result.data;
-      return result;
+      break;
   }
   return result;
 }

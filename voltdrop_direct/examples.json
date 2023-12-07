@@ -652,5 +652,288 @@
       "errors": ["Invalid downlink: Packet transmit schedule must contain at least one transmitting element"],
       "warnings": []
     }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit interval (1 min) [default configuration]",
+    "input": {
+      "bytes": [0, 49, 0, 0, 0, 60],
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 60,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit interval (2 min)",
+    "input": {
+      "bytes": [0, 49, 0, 0, 0, 120],
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 120,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit interval (5 min)",
+    "input": {
+      "bytes": [0, 49, 0, 0, 1, 44],
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 300,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit interval (15 min)",
+    "input": {
+      "bytes": [0, 49, 0, 0, 3, 132],
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 900,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit interval (30 min)",
+    "input": {
+      "bytes": [0, 49, 0, 0, 7, 8],
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 1800,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit interval short",
+    "input": {
+      "bytes": [0, 49, 0, 0],
+      "fPort": 3
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: transmit interval downlink must be 6 bytes or greater"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink decode transmit interval less than 1 min",
+    "input": {
+      "bytes": [0, 49, 0, 0, 0, 30],
+      "fPort": 3
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: transmit interval cannot be less than 1 min"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink decode transmit interval greater than 30 min",
+    "input": {
+      "bytes": [0, 49, 0, 0, 7, 208],
+      "fPort": 3
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: transmit interval cannot be greater than 30 min"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode factory reset",
+    "input": {
+      "bytes": [0, 70],
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "factoryReset": true
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink decode unknown downlink type",
+    "input": {
+      "bytes": [0, 255],
+      "fPort": 3
+    },
+    "output": {
+      "errors": ["Invalid downlink: unknown downlink type"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit packet schedule",
+    "input": {
+      "bytes": [0, 48, 9, 40, 41, 40, 41, 0, 42, 43, 44, 45],
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "packetTransmitSchedule": [40, 41, 40, 41, 0, 42, 43, 44, 45]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit packet schedule unknown ID",
+    "input": {
+      "bytes": [0, 48, 10, 40, 41, 40, 41, 0, 42, 22, 43, 44, 45],
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "packetTransmitSchedule": [40, 41, 40, 41, 0, 42, 0, 43, 44, 45]
+      },
+      "errors": [],
+      "warnings": ["Invalid packet ID replaced by gap in transmit schedule"]
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit packet schedule long",
+    "input": {
+      "bytes": [0, 48, 60,
+                40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "packetTransmitSchedule": [40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit packet schedule empty",
+    "input": {
+      "bytes": [0, 48, 0],
+      "fPort": 3
+    },
+    "output": {
+      "errors": ["Invalid downlink: Packet transmit schedule must contain at least one element"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit packet schedule too long",
+    "input": {
+      "bytes": [0, 48, 61,
+                40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+       "fPort": 3
+    },
+    "output": {
+      "errors": ["Invalid downlink: Packet transmit schedule cannot be longer than 60 elements"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit packet schedule gap only",
+    "input": {
+      "bytes": [0, 48, 4, 0, 0, 0, 0],
+      "fPort": 3
+    },
+    "output": {
+      "errors": ["Invalid downlink: Packet transmit schedule must contain at least one transmitting element"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit packet schedule invalid length",
+    "input": {
+      "bytes": [0, 48, 24, 40, 41, 40, 41, 0, 42, 43, 44, 45],
+      "fPort": 3
+    },
+    "output": {
+      "errors": ["Invalid downlink: transmit packet schedule length field larger than input data"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit packet schedule zero length field",
+    "input": {
+      "bytes": [0, 48, 0, 40],
+      "fPort": 3
+    },
+    "output": {
+      "errors": ["Invalid downlink: Packet transmit schedule length field cannot be zero"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode transmit packet schedule short",
+    "input": {
+      "bytes": [0, 48, 24],
+      "fPort": 3
+    },
+    "output": {
+      "errors": ["Invalid downlink: transmit packet schedule downlink must be 4 bytes or greater"],
+      "warnings": []
+    }
+  },
+
+
+  {
+    "type": "downlink-decode",
+    "description": "Downlink decode no data",
+    "input": {
+      "bytes": [],
+      "fPort": 3
+    },
+    "output": {
+      "errors": ["Invalid downlink: downlink must be 2 bytes or greater"],
+      "warnings": []
+    }
   }
 ]
