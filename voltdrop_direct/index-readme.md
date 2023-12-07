@@ -142,15 +142,15 @@ Example:
 
 | Factory Reset | Raw Packet (Hex) | Base64 Encoding | Default |
 | --- | --- | --- | :---: |
-| N/A | [00, 46, 00, 00, 00, 00, 00, 00, 00, 00] | AEYAAAAAAAAAAA== | N/A |
+| N/A | [00, 46] | AEY= | N/A |
 
 | Transmit Interval (s) | Raw Packet (Hex) | Base64 Encoding | Default |
 | --- | --- | --- | :---: |
-| 60 | [00, 31, 00, 00, 00, 3C, 00, 00, 00, 00] | ADEAAAA8AAAAAA== | ✅ |
-| 120 | [00, 31, 00, 00, 00, 78, 00, 00, 00, 00] | ADEAAAB4AAAAAA== | ❌ |
-| 300 | [00, 31, 00, 00, 01, 2C, 00, 00, 00, 00] | ADEAAAEsAAAAAA== | ❌ |
-| 900 | [00, 31, 00, 00, 03, 84, 00, 00, 00, 00] | ADEAAAOEAAAAAA== | ❌ |
-| 1800 | [00, 31, 00, 00, 07, 08, 00, 00, 00, 00] | ADEAAAcIAAAAAA== | ❌ |
+| 60 | [00, 31, 00, 00, 00, 3C] | ADEAAAA8 | ✅ |
+| 120 | [00, 31, 00, 00, 00, 78] | ADEAAAB4 | ❌ |
+| 300 | [00, 31, 00, 00, 01, 2C] | ADEAAAEs | ❌ |
+| 900 | [00, 31, 00, 00, 03, 84] | ADEAAAOE | ❌ |
+| 1800 | [00, 31, 00, 00, 07, 08] | ADEAAAcI | ❌ |
 
 | Packet Schedule (Assuming 60s transmit interval) | Raw Packet (Hex) | Base64 Encoding | Default |
 | --- | --- | --- | :---: |

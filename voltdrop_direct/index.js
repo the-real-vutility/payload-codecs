@@ -178,7 +178,7 @@ function encodeDownlink(input) {
       delete result.bytes;
       return result;
     }
-    let downlink = Buffer.alloc(10);
+    let downlink = Buffer.alloc(6);
     downlink.writeUInt16BE(0x0031, 0);
     downlink.writeUInt32BE(input.data.transmitIntervalSeconds, 2);
     result.bytes = Array.from(new Uint8Array(downlink.buffer));
@@ -236,9 +236,7 @@ function encodeDownlink(input) {
 
   if (typeof input.data.factoryReset !== "undefined") {
     if (input.data.factoryReset === true) {
-      result.bytes = [
-        0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-      ];
+      result.bytes = [0x00, 0x46];
       result.fPort = 3;
       return result;
     } else {
@@ -277,8 +275,8 @@ function decodeDownlink(input) {
 
   let raw = Buffer.from(input.bytes);
 
-  if (raw.length < 10) {
-    result.errors.push("Invalid downlink: downlink must be 10 bytes or greater");
+  if (raw.length < 2) {
+    result.errors.push("Invalid downlink: downlink must be 2 bytes or greater");
     delete result.data;
     return result;
   }
@@ -286,6 +284,13 @@ function decodeDownlink(input) {
   let type = raw.readUInt16BE(0);
   switch (type) {
     case 0x31: // transmit interval
+      if (raw.length < 6) {
+        result.errors.push(
+          "Invalid downlink: transmit interval downlink must be 6 bytes or greater"
+        );
+        delete result.data;
+        return result;
+      }
       let transmitIntervalSeconds = raw.readUInt32BE(2);
       if (transmitIntervalSeconds < 60) {
         result.errors.push(
@@ -304,6 +309,13 @@ function decodeDownlink(input) {
       result.data.transmitIntervalSeconds = transmitIntervalSeconds;
       break;
     case 0x30: // packet transmit schedule
+      if (raw.length < 3) {
+        result.errors.push(
+          "Invalid downlink: transmit packet schedule downlink must be 3 bytes or greater"
+        );
+        delete result.data;
+        return result;
+      }
       let dataLength = raw.readUInt8(2);
       if (dataLength > (raw.length - 3)) {
         result.errors.push(
@@ -337,22 +349,6 @@ function decodeDownlink(input) {
       }
       break;
     case 0x46: // factory reset
-      if (
-        raw[2] !== 0 ||
-        raw[3] !== 0 ||
-        raw[4] !== 0 ||
-        raw[5] !== 0 ||
-        raw[6] !== 0 ||
-        raw[7] !== 0 ||
-        raw[8] !== 0 ||
-        raw[9] !== 0
-      ) {
-        result.errors.push(
-          "Invalid downlink: Factory reset reserved bytes are not equal to 0"
-        );
-        delete result.data;
-        return result;
-      }
       result.data.factoryReset = true;
       break;
     default:
