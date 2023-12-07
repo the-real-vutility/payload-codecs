@@ -106,19 +106,18 @@ Example:
 
 #### Packet Transmit Schedule
 
-`packetTransmitSchedule` is is not supported by the ES5-compliant codec.
+`packetTransmitSchedule` is not supported by the ES5-compliant codec.
 
 ## Example Downlinks
 
 | Factory Reset | Raw Packet (Hex) | Base64 Encoding | Default |
 | --- | --- | --- | :---: |
-| N/A | [46, 00, 00, 00, 00, 00, 00, 00, 00, 00] | RgAAAAAAAAAAAA== | N/A |
-
+| N/A | [00, 46, 00, 00, 00, 00, 00, 00, 00, 00] | AEYAAAAAAAAAAA== | N/A |
 
 | Transmit Interval (s) | Raw Packet (Hex) | Base64 Encoding | Default |
 | --- | --- | --- | :---: |
-| 60 | [31, 00, 00, 00, 70, 42, 00, 00, 00, 00] | MQAAAHBCAAAAAA== | ✅ |
-| 120 | [31, 00, 00, 00, F0, 42, 00, 00, 00, 00] | MQAAAPBCAAAAAA== | ❌ |
-| 300 | [31, 00, 00, 00, 96, 43, 00, 00, 00, 00] | MQAAAJZDAAAAAA== | ❌ |
-| 1500 | [31, 00, 00, 00, 61, 44, 00, 00, 00, 00] | MQAAAGFEAAAAAA== | ❌ |
-| 3000 | [31, 00, 00, 00, E1, 44, 00, 00, 00, 00] | MQAAAOFEAAAAAA== | ❌ |
+| 60 | [00, 31, 00, 00, 00, 3C, 00, 00, 00, 00] | ADEAAAA8AAAAAA== | ✅ |
+| 120 | [00, 31, 00, 00, 00, 78, 00, 00, 00, 00] | ADEAAAB4AAAAAA== | ❌ |
+| 300 | [00, 31, 00, 00, 01, 2C, 00, 00, 00, 00] | ADEAAAEsAAAAAA== | ❌ |
+| 900 | [00, 31, 00, 00, 03, 84, 00, 00, 00, 00] | ADEAAAOEAAAAAA== | ❌ |
+| 1800 | [00, 31, 00, 00, 07, 08, 00, 00, 00, 00] | ADEAAAcIAAAAAA== | ❌ |

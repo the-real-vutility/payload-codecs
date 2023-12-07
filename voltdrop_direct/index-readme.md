@@ -91,7 +91,7 @@ Example:
 
 #### Factory Reset
 
-`factoryReset` sets the device to factory defaults. Valid value is `true`.
+`factoryReset` sets the device to factory defaults and clears energy odometers. Valid value is `true`.
 
 Example:
 ```
@@ -128,7 +128,7 @@ The following packet identifiers are used when specifying a Voltdrop schedule. C
 | Active Energy Accumulation      | 43 (0x2C) | ❌ | Total active energy accumulation and average power factor. Unconfirmed variant of previous packet. |
 | Apparent Energy Accumulation    | 44 (0x2D) | ✅ | Total apparent energy accumulation and average power factor.|
 | Apparent Energy Accumulation    | 45 (0x2E) | ❌ | Total apparent energy accumulation and average power factor. Unconfirmed variant of previous packet. |
-| None (Transmit Gap)             | 0 (0x00)  | ❌ | Used to introduce delays/gaps in the transmit schedule. |
+| None (Transmit Gap)             | 0  (0x00) | ❌ | Used to introduce delays/gaps in the transmit schedule. |
 
 Example:
 ```
@@ -142,18 +142,18 @@ Example:
 
 | Factory Reset | Raw Packet (Hex) | Base64 Encoding | Default |
 | --- | --- | --- | :---: |
-| N/A | [46, 00, 00, 00, 00, 00, 00, 00, 00, 00] | RgAAAAAAAAAAAA== | N/A |
-
+| N/A | [00, 46, 00, 00, 00, 00, 00, 00, 00, 00] | AEYAAAAAAAAAAA== | N/A |
 
 | Transmit Interval (s) | Raw Packet (Hex) | Base64 Encoding | Default |
 | --- | --- | --- | :---: |
-| 60 | [31, 00, 00, 00, 70, 42, 00, 00, 00, 00] | MQAAAHBCAAAAAA== | ✅ |
-| 120 | [31, 00, 00, 00, F0, 42, 00, 00, 00, 00] | MQAAAPBCAAAAAA== | ❌ |
-| 300 | [31, 00, 00, 00, 96, 43, 00, 00, 00, 00] | MQAAAJZDAAAAAA== | ❌ |
-| 1500 | [31, 00, 00, 00, 61, 44, 00, 00, 00, 00] | MQAAAGFEAAAAAA== | ❌ |
-| 3000 | [31, 00, 00, 00, E1, 44, 00, 00, 00, 00] | MQAAAOFEAAAAAA== | ❌ |
+| 60 | [00, 31, 00, 00, 00, 3C, 00, 00, 00, 00] | ADEAAAA8AAAAAA== | ✅ |
+| 120 | [00, 31, 00, 00, 00, 78, 00, 00, 00, 00] | ADEAAAB4AAAAAA== | ❌ |
+| 300 | [00, 31, 00, 00, 01, 2C, 00, 00, 00, 00] | ADEAAAEsAAAAAA== | ❌ |
+| 900 | [00, 31, 00, 00, 03, 84, 00, 00, 00, 00] | ADEAAAOEAAAAAA== | ❌ |
+| 1800 | [00, 31, 00, 00, 07, 08, 00, 00, 00, 00] | ADEAAAcIAAAAAA== | ❌ |
 
-| Packet Schedule | Raw Packet (Hex) | Base64 Encoding | Default |
+| Packet Schedule (Assuming 60s transmit interval) | Raw Packet (Hex) | Base64 Encoding | Default |
 | --- | --- | --- | :---: |
-| Alternating voltage and current packets on 1 minute intervals with confirmed active energy once every 15 minutes. | [31, 00, 0F, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 2B] | MQAPKCkoKSgpKCkoKSgpKCkr | ✅ |
-| Voltage and unconfirmed active energy once every 10 minutes. | [31, 00, 0A, 28, 2E, 00, 00, 00, 00, 00, 00, 00, 00] | MQAKKC4AAAAAAAAAAA== | ❌ |
+| Alternating voltage and current packets on 1 minute intervals with confirmed active energy once every 5 minutes. | [00, 30, 05, 28, 29, 28, 29, 2B] | ADAFKCkoKSs= | ✅ |
+| Alternating voltage and current packets on 1 minute intervals with confirmed active energy once every 15 minutes. | [00, 30, 0F, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 2B] | ADAPKCkoKSgpKCkoKSgpKCkr | ❌ |
+| Voltage and unconfirmed active energy once every 10 minutes. | [00, 30, 0A, 28, 2E, 00, 00, 00, 00, 00, 00, 00, 00] | ADAKKC4AAAAAAAAAAA== | ❌ |

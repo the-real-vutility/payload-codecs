@@ -179,9 +179,8 @@ function encodeDownlink(input) {
       return result;
     }
     let downlink = Buffer.alloc(10);
-    downlink.writeUInt16LE(0x0031, 0);
-    downlink.writeFloatLE(input.data.transmitIntervalSeconds, 2);
-    downlink.writeFloatLE(0, 6);
+    downlink.writeUInt16BE(0x0031, 0);
+    downlink.writeUInt32BE(input.data.transmitIntervalSeconds, 2);
     result.bytes = Array.from(new Uint8Array(downlink.buffer));
     result.fPort = 3;
     return result;
@@ -206,7 +205,7 @@ function encodeDownlink(input) {
     const validIDList = [0, 40, 41, 42, 43, 44, 45];
     let bufferSize = Math.max(input.data.packetTransmitSchedule.length + 3, 10);
     let downlink = Buffer.alloc(bufferSize);
-    downlink.writeUInt16LE(0x0030, 0);
+    downlink.writeUInt16BE(0x0030, 0);
     downlink.writeUInt8(input.data.packetTransmitSchedule.length, 2);
     for (let index = 0; index < (bufferSize - 3); index++) {
       if (index < input.data.packetTransmitSchedule.length) {
@@ -229,7 +228,7 @@ function encodeDownlink(input) {
   if (typeof input.data.factoryReset !== "undefined") {
     if (input.data.factoryReset === true) {
       result.bytes = [
-        0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
       ];
       result.fPort = 3;
       return result;
@@ -275,15 +274,10 @@ function decodeDownlink(input) {
     return result;
   }
 
-  let type = raw.readUInt16LE(0);
+  let type = raw.readUInt16BE(0);
   switch (type) {
     case 0x31: // transmit interval
-      let transmitIntervalSeconds = raw.readFloatLE(2);
-      // Not currently in use for this decoder
-      let transmitIntervalVarianceSeconds = raw.readFloatLE(6);
-      if (transmitIntervalVarianceSeconds !== 0) {
-        result.warnings.push("Warning: Byte index 6-9 are not 0");
-      }
+      let transmitIntervalSeconds = raw.readUInt32BE(2);
       if (transmitIntervalSeconds < 60) {
         result.errors.push(
           "Invalid downlink: transmit interval cannot be less than 1 min"
