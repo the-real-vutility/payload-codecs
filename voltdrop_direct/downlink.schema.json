@@ -14,6 +14,9 @@
           "type": "number"
         }
       },
+      "softReset": {
+        "type": "boolean"
+      },
       "factoryReset": {
         "type": "boolean"
       }

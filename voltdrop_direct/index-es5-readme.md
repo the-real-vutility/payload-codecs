@@ -76,9 +76,23 @@ To encode a downlink, use **one and only one** of the following downlinks as a f
 
 | Downlinks |
 | --- |
+| `softReset` |
 | `factoryReset` |
 | `transmitIntervalSeconds` |
-| `packetTransmitSchedule` (Not supported by ES5 codec)|
+| `packetTransmitSchedule` *(Not supported by ES5 codec)*|
+
+#### Soft Reset
+
+`softReset` reboots the device and causes it to rejoin the LoRaWAN network.
+Does not affect device configuration or accumulated energy counters Valid value is `true`.
+
+Example:
+```
+"data":
+{
+    "softReset": true
+}
+```
 
 #### Factory Reset
 

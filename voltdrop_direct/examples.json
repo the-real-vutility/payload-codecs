@@ -509,6 +509,34 @@
   },
   {
     "type": "downlink-encode",
+    "description": "soft reset",
+    "input": {
+      "data": {
+        "softReset": true
+      }
+    },
+    "output": {
+      "bytes": [0, 90],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: soft reset is false",
+    "input": {
+      "data": {
+        "softReset": false
+      }
+    },
+    "output": {
+      "errors": ["Invalid downlink: valid softReset value is true"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
     "description": "Error: invalid data field",
     "input": {
       "data": {
@@ -555,6 +583,48 @@
       "data": {
         "packetTransmitSchedule": [0, 0],
         "factoryReset": true
+      }
+    },
+    "output": {
+      "errors": ["Invalid downlink: More than one downlink type defined"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 60,
+        "softReset": true
+      }
+    },
+    "output": {
+      "errors": ["Invalid downlink: More than one downlink type defined"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 300,
+        "softReset": true
+      }
+    },
+    "output": {
+      "errors": ["Invalid downlink: More than one downlink type defined"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "input": {
+      "data": {
+        "packetTransmitSchedule": [41, 42],
+        "softReset": true
       }
     },
     "output": {
@@ -787,6 +857,21 @@
   },
   {
     "type": "downlink-decode",
+    "description": "Downlink decode soft reset",
+    "input": {
+      "bytes": [0, 90],
+      "fPort": 3
+    },
+    "output": {
+      "data": {
+        "softReset": true
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
     "description": "Error: downlink decode unknown downlink type",
     "input": {
       "bytes": [0, 255],
@@ -844,18 +929,6 @@
                                     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
       },
       "errors": [],
-      "warnings": []
-    }
-  },
-  {
-    "type": "downlink-decode",
-    "description": "Downlink decode transmit packet schedule empty",
-    "input": {
-      "bytes": [0, 48, 0],
-      "fPort": 3
-    },
-    "output": {
-      "errors": ["Invalid downlink: Packet transmit schedule must contain at least one element"],
       "warnings": []
     }
   },

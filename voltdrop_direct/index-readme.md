@@ -73,6 +73,7 @@ To encode a downlink, use **one and only one** of the following downlinks as a f
 
 | Downlinks |
 | --- |
+| `softReset` |
 | `factoryReset` |
 | `transmitIntervalSeconds` |
 | `packetTransmitSchedule` |
@@ -89,9 +90,22 @@ Example:
 }
 ```
 
+#### Soft Reset
+
+`softReset` reboots the device and causes it to rejoin the LoRaWAN network.
+Does not affect device configuration or accumulated energy counters Valid value is `true`.
+
+Example:
+```
+"data":
+{
+    "softReset": true
+}
+```
+
 #### Factory Reset
 
-`factoryReset` sets the device to factory defaults and clears energy odometers. Valid value is `true`.
+`factoryReset` sets the device to factory defaults and clears accumulated energy counters. Valid value is `true`.
 
 Example:
 ```
@@ -139,6 +153,10 @@ Example:
 ```
 
 ## Example Downlinks
+
+| Soft Reset | Raw Packet (Hex) | Base64 Encoding | Default |
+| --- | --- | --- | :---: |
+| N/A | [00, 5A] | AFo= | N/A |
 
 | Factory Reset | Raw Packet (Hex) | Base64 Encoding | Default |
 | --- | --- | --- | :---: |

@@ -175,6 +175,9 @@ function encodeDownlink(input) {
   if (typeof input.data.factoryReset !== "undefined") {
     definedDownlinkVars += 1;
   }
+  if (typeof input.data.softReset !== "undefined") {
+    definedDownlinkVars += 1;
+  }
 
   if (definedDownlinkVars > 1) {
     result.errors.push("Invalid downlink: More than one downlink type defined");
@@ -233,6 +236,19 @@ function encodeDownlink(input) {
       return result;
     } else {
       result.errors.push("Invalid downlink: valid factoryReset value is true");
+      delete result.bytes;
+      return result;
+    }
+  }
+
+  if (typeof input.data.softReset !== "undefined") {
+    var softResetDownlinkBytes = [0x00, 0x5A];
+    if (input.data.softReset === true) {
+      result.bytes = softResetDownlinkBytes;
+      result.fPort = 3;
+      return result;
+    } else {
+      result.errors.push("Invalid downlink: valid softReset value is true");
       delete result.bytes;
       return result;
     }

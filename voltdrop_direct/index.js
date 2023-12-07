@@ -156,6 +156,9 @@ function encodeDownlink(input) {
   if (typeof input.data.factoryReset !== "undefined") {
     definedDownlinkVars += 1;
   }
+  if (typeof input.data.softReset !== "undefined") {
+    definedDownlinkVars += 1;
+  }
 
   if (definedDownlinkVars > 1) {
     result.errors.push("Invalid downlink: More than one downlink type defined");
@@ -241,6 +244,18 @@ function encodeDownlink(input) {
       return result;
     } else {
       result.errors.push("Invalid downlink: valid factoryReset value is true");
+      delete result.bytes;
+      return result;
+    }
+  }
+
+  if (typeof input.data.softReset !== "undefined") {
+    if (input.data.softReset === true) {
+      result.bytes = [0x00, 0x5A];
+      result.fPort = 3;
+      return result;
+    } else {
+      result.errors.push("Invalid downlink: valid softReset value is true");
       delete result.bytes;
       return result;
     }
@@ -361,6 +376,9 @@ function decodeDownlink(input) {
       break;
     case 0x46: // factory reset
       result.data.factoryReset = true;
+      break;
+    case 0x5A: // soft reset
+      result.data.softReset = true;
       break;
     default:
       result.errors.push("Invalid downlink: unknown downlink type");
