@@ -1,7 +1,7 @@
 {
-  "name": "codec_hdd",
-  "version": "1.0.2",
-  "description": "Vutility Hotdrop Direct codec",
+  "name": "codec_vdd",
+  "version": "1.0.0",
+  "description": "Vutility Voltdrop Direct codec",
   "main": "index.js",
   "scripts": {
     "test": "jest --collectCoverage"

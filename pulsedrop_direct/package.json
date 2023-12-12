@@ -1,6 +1,6 @@
 {
   "name": "codec_pdd",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vutility Pulsedrop Direct codec",
   "main": "index.js",
   "scripts": {

@@ -1,0 +1,17 @@
+[
+  {
+    "type": "downlink-encode",
+    "description": "Error: transmit interval not one of set values",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 153
+      }
+    },
+    "output": {
+      "errors": [
+        "Invalid downlink: transmit interval is not 1 min, 2 mins, 5 mins, 15 mins or 30 mins"
+      ],
+      "warnings": []
+    }
+  }
+]

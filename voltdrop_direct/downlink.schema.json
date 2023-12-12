@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "type": "object",
+    "properties": {
+      "transmitIntervalSeconds": {
+        "type": "number"
+      },
+      "packetTransmitSchedule": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "softReset": {
+        "type": "boolean"
+      },
+      "factoryReset": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  },
+  "additionalProperties": false
+}

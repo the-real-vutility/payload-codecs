@@ -216,7 +216,7 @@ function encodeDownlink(input) {
   if (typeof input.data.factoryReset !== "undefined") {
     if (input.data.factoryReset === true) {
       result.bytes = [
-        0x5a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
       ];
       result.fPort = 3;
       return result;
@@ -338,7 +338,7 @@ function decodeDownlink(input) {
       }
       result.data.lowPowerThreshold = lowPowerThreshold;
       break;
-    case 0x5a: // factory reset
+    case 0x46: // factory reset
       if (
         raw[2] !== 0 ||
         raw[3] !== 0 ||

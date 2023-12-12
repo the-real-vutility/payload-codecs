@@ -103,7 +103,7 @@ Example:
 
 | Factory Reset | Raw Packet | Base64 Encoding | Default |
 | --- | --- | --- | :---: |
-| N/A | [5A, 00, 00, 00, 00, 00, 00, 00, 00, 00] | RgAAAAAAAAAAAA== | N/A |
+| N/A | [46, 00, 00, 00, 00, 00, 00, 00, 00, 00] | RgAAAAAAAAAAAA== | N/A |
 
 
 | Transmit Interval (s) | Raw Packet | Base64 Encoding | Default |

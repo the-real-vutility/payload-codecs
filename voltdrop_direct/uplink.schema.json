@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "type": "object",
+    "properties": {
+      "voltageL1": {
+        "type": "number"
+      },
+      "voltageL2": {
+        "type": "number"
+      },
+      "voltageL3": {
+        "type": "number"
+      },
+      "powerFactorL1": {
+        "type": "number"
+      },
+      "powerFactorL2": {
+        "type": "number"
+      },
+      "powerFactorL3": {
+        "type": "number"
+      },
+      "capacitorVoltage": {
+        "type": "number"
+      },
+      "currentL1": {
+        "type": "number"
+      },
+      "currentL2": {
+        "type": "number"
+      },
+      "currentL3": {
+        "type": "number"
+      },
+      "maxCurrentL1": {
+        "type": "number"
+      },
+      "maxCurrentL2": {
+        "type": "number"
+      },
+      "maxCurrentL3": {
+        "type": "number"
+      },
+      "temperatureCelsius": {
+        "type": "number"
+      },
+      "activeEnergyAccumulation": {
+        "type": "number"
+      },
+      "apparentEnergyAccumulation": {
+        "type": "number"
+      },
+      "averagePowerFactor": {
+        "type": "number"
+      },
+      "resetReason": {
+        "type": "string"
+      },
+      "coreFirmwareHash": {
+        "type": "string"
+      },
+      "readerFirmwareHash": {
+        "type": "string"
+      },
+      "systemErrorConditions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "registerID": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  },
+  "additionalProperties": false
+}

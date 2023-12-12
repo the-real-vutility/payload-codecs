@@ -1,12 +1,12 @@
 {
   "codecId": "0032",
-  "sourceUrl": "https://github.com/the-real-vutility/payload-codecs/pulsedrop_direct",
+  "sourceUrl": "https://github.com/the-real-vutility/payload-codecs/voltdrop_direct",
   "mac": "d46352",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "main": "index.js",
   "specVersion": "1.0.0",
-  "name": "pulsedrop-direct",
-  "description": "Pulsedrop Direct codec",
+  "name": "voltdrop-direct",
+  "description": "Voltdrop Direct codec",
   "codec": {
     "encodeDownlink": true,
     "decodeDownlink": true,
