@@ -7,6 +7,7 @@ This repository holds JavaScript payload codecs for Vutility devices. These code
 | --- | --- | --- | --- | :---: | :---: | :---: |
 | `hotdrop direct` | [index.js](hotdrop_direct/index.js) | [readme](hotdrop_direct/index-readme.md) | HotDrop Direct Codec | ✅ | ✅ | ✅
 | `hotdrop direct` | [index-es5.js](hotdrop_direct/index-es5.js) | [readme](hotdrop_direct/index-es5-readme.md)  | ES5 Compatible HotDrop Direct Codec | ✅ | ✅* | ❌
+| `hotdrop direct` | [index.js](hotdrop_direct/aws-iot-core/index.js) | [readme](hotdrop_direct/aws-iot-core/readme.md)  | Decoding Lambda Function (AWS) | ✅ | ❌ | ❌
 | `pulsedrop direct` | [index.js](pulsedrop_direct/index.js) | [readme](pulsedrop_direct/index-readme.md) | PulseDrop Direct Codec | ✅ | ✅ | ✅
 | `pulsedrop direct` | [index-es5.js](pulsedrop_direct/index-es5.js) | [readme](pulsedrop_direct/index-es5-readme.md)  | ES5 Compatible PulseDrop Direct Codec | ✅ | ✅* | ❌
 | `voltdrop direct` | [index.js](voltdrop_direct/index.js) | [readme](voltdrop_direct/index-readme.md) | VoltDrop Direct Codec | ✅ | ✅ | ✅
