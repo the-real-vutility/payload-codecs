@@ -10,6 +10,7 @@
  * @param {Object} input - An object provided by the IoT Flow framework
  * @param {number[]} input.bytes - Array of bytes represented as numbers as it has been sent from the device
  * @param {number} input.fPort - The Port Field on which the uplink has been sent
+ * @param {Date} input.recvTime - The uplink message time recorded by the LoRaWAN network server
  * @returns {DecodedUplink} The decoded object
  */
 function decodeUplink(input) {
@@ -106,6 +107,7 @@ exports.handler = async function (event, context) {
     var decoded = decodeUplink({
       bytes: bytes,
       fPort: input_fPort,
+      recvTime: Date.now(),
     });
 
     // Check if decoder has returned any errors
