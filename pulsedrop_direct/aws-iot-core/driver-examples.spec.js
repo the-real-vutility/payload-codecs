@@ -24,7 +24,7 @@ describe("aws handler", () => {
   });
 });
 
-describe("Decode uplink", () => {
+describe("Decode uplink index.js", () => {
   examples.forEach((example) => {
     if (example.type === "uplink") {
       it(example.description, () => {

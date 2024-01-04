@@ -1,0 +1,75 @@
+[
+  {
+    "type": "aws-uplink",
+    "description": "Normal uplink",
+    "input": {
+      "PayloadData": "MgAAG0sAdwIB/4U=",
+      "WirelessDeviceId": "57728ff8-5d1d-4130-9de2-f004d8722bc2",
+      "WirelessMetadata": {
+        "LoRaWAN": {
+          "DataRate": 0,
+          "DevEui": "aaaa1111bbbb2222",
+          "FPort": 2,
+          "Frequency": 867900000,
+          "Timestamp": "2020-12-07T14:41:48Z"
+        }
+      }
+    },
+    "output": {
+      "ampHourAccumulation": 698.7,
+      "averageAmps": 11.9,
+      "maximumAmps": 12.138,
+      "minimumAmps": 11.781,
+      "capacitorVoltage": 5,
+      "temperatureCelsius": 22.588235294117645,
+      "status": 200
+    }
+  },
+  {
+    "type": "aws-uplink",
+    "description": "Error logged and returned",
+    "input": {
+      "PayloadData": "MgAAAAAAA",
+      "WirelessDeviceId": "57728ff8-5d1d-4130-9de2-f004d8722bc2",
+      "WirelessMetadata": {
+        "LoRaWAN": {
+          "DataRate": 0,
+          "DevEui": "aaaa1111bbbb2222",
+          "FPort": 2,
+          "Frequency": 867900000,
+          "Timestamp": "2020-12-07T14:41:48Z"
+        }
+      }
+    },
+    "output": {
+      "errorMessage": "Error decoding:Payload length must be 11 bytes",
+      "status": 500
+    }
+  },
+  {
+    "type": "aws-uplink",
+    "description": "Warning logged",
+    "input": {
+      "PayloadData": "MgAAAAAAAAAAAAA=",
+      "WirelessDeviceId": "57728ff8-5d1d-4130-9de2-f004d8722bc2",
+      "WirelessMetadata": {
+        "LoRaWAN": {
+          "DataRate": 0,
+          "DevEui": "aaaa1111bbbb2222",
+          "FPort": 2,
+          "Frequency": 867900000,
+          "Timestamp": "2020-12-07T14:41:48Z"
+        }
+      }
+    },
+    "output": {
+      "ampHourAccumulation": 0,
+      "averageAmps": 0,
+      "capacitorVoltage": 0,
+      "maximumAmps": 0,
+      "minimumAmps": 0,
+      "temperatureCelsius": -40,
+      "status": 200
+    }
+  }
+]
