@@ -18,7 +18,7 @@
         "capacitorVoltage": 0
       },
       "errors": [],
-      "warnings": ["Low capacitor voltage may reduce transmit interval."]
+      "warnings": []
     }
   },
   {
@@ -242,7 +242,7 @@
         "capacitorVoltage": 2.60784313725490196078
       },
       "errors": [],
-      "warnings": ["Low capacitor voltage may reduce transmit interval."]
+      "warnings": []
     }
   },
   {
@@ -509,10 +509,12 @@
     },
     "output": {
       "data": {
-        "systemErrorConditions": ["Core Voltage Drop",
-                                  "Reader Timeout",
-                                  "Reader Overvoltage",
-                                  "Phase Sequence Error"],
+        "systemErrorConditions": [
+          "Core Voltage Drop",
+          "Reader Timeout",
+          "Reader Overvoltage",
+          "Phase Sequence Error"
+        ],
         "registerID": "0xAA55"
       },
       "errors": [],
@@ -529,14 +531,16 @@
     },
     "output": {
       "data": {
-        "systemErrorConditions": ["Invalid Downlink",
-                                  "Core Voltage Drop",
-                                  "EEPROM Fail",
-                                  "Reader Timeout",
-                                  "Reader NACK",
-                                  "Reader Overvoltage",
-                                  "Reader Not Calibrated",
-                                  "Phase Sequence Error"],
+        "systemErrorConditions": [
+          "Invalid Downlink",
+          "Core Voltage Drop",
+          "EEPROM Fail",
+          "Reader Timeout",
+          "Reader NACK",
+          "Reader Overvoltage",
+          "Reader Not Calibrated",
+          "Phase Sequence Error"
+        ],
         "registerID": "0xFFFF"
       },
       "errors": [],
@@ -836,16 +840,19 @@
     "description": "Transmit Packet Schedule Long",
     "input": {
       "data": {
-        "packetTransmitSchedule": [40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        "packetTransmitSchedule": [
+          40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
       }
     },
     "output": {
-      "bytes": [0, 48, 60,
-                40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      "bytes": [
+        0, 48, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ],
       "fPort": 3,
       "errors": [],
       "warnings": []
@@ -860,7 +867,9 @@
       }
     },
     "output": {
-      "errors": ["Invalid downlink: Packet transmit schedule must contain at least one element"],
+      "errors": [
+        "Invalid downlink: Packet transmit schedule must contain at least one element"
+      ],
       "warnings": []
     }
   },
@@ -869,13 +878,17 @@
     "description": "Transmit Packet Schedule Too Long",
     "input": {
       "data": {
-        "packetTransmitSchedule": [40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        "packetTransmitSchedule": [
+          40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
       }
     },
     "output": {
-      "errors": ["Invalid downlink: Packet transmit schedule cannot be longer than 60 elements"],
+      "errors": [
+        "Invalid downlink: Packet transmit schedule cannot be longer than 60 elements"
+      ],
       "warnings": []
     }
   },
@@ -888,7 +901,9 @@
       }
     },
     "output": {
-      "errors": ["Invalid downlink: Packet transmit schedule must contain at least one transmitting element"],
+      "errors": [
+        "Invalid downlink: Packet transmit schedule must contain at least one transmitting element"
+      ],
       "warnings": []
     }
   },
@@ -1078,24 +1093,29 @@
         "packetTransmitSchedule": [40, 41, 40, 41, 0, 42, 22, 43, 44, 45]
       },
       "errors": [],
-      "warnings": ["Invalid packet ID 22 in transmit schedule will be replaced by gap on device"]
+      "warnings": [
+        "Invalid packet ID 22 in transmit schedule will be replaced by gap on device"
+      ]
     }
   },
   {
     "type": "downlink-decode",
     "description": "Downlink decode transmit packet schedule long",
     "input": {
-      "bytes": [0, 48, 60,
-                40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      "bytes": [
+        0, 48, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ],
       "fPort": 3
     },
     "output": {
       "data": {
-        "packetTransmitSchedule": [40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                                    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        "packetTransmitSchedule": [
+          40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
       },
       "errors": [],
       "warnings": []
@@ -1105,14 +1125,17 @@
     "type": "downlink-decode",
     "description": "Downlink decode transmit packet schedule too long",
     "input": {
-      "bytes": [0, 48, 61,
-                40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-       "fPort": 3
+      "bytes": [
+        0, 48, 61, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ],
+      "fPort": 3
     },
     "output": {
-      "errors": ["Invalid downlink: Packet transmit schedule cannot be longer than 60 elements"],
+      "errors": [
+        "Invalid downlink: Packet transmit schedule cannot be longer than 60 elements"
+      ],
       "warnings": []
     }
   },
@@ -1124,7 +1147,9 @@
       "fPort": 3
     },
     "output": {
-      "errors": ["Invalid downlink: Packet transmit schedule must contain at least one transmitting element"],
+      "errors": [
+        "Invalid downlink: Packet transmit schedule must contain at least one transmitting element"
+      ],
       "warnings": []
     }
   },
@@ -1136,7 +1161,9 @@
       "fPort": 3
     },
     "output": {
-      "errors": ["Invalid downlink: transmit packet schedule length field larger than input data"],
+      "errors": [
+        "Invalid downlink: transmit packet schedule length field larger than input data"
+      ],
       "warnings": []
     }
   },
@@ -1148,7 +1175,9 @@
       "fPort": 3
     },
     "output": {
-      "errors": ["Invalid downlink: Packet transmit schedule length field cannot be zero"],
+      "errors": [
+        "Invalid downlink: Packet transmit schedule length field cannot be zero"
+      ],
       "warnings": []
     }
   },
@@ -1160,7 +1189,9 @@
       "fPort": 3
     },
     "output": {
-      "errors": ["Invalid downlink: transmit packet schedule downlink must be 4 bytes or greater"],
+      "errors": [
+        "Invalid downlink: transmit packet schedule downlink must be 4 bytes or greater"
+      ],
       "warnings": []
     }
   },

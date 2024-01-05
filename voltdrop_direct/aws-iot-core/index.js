@@ -62,11 +62,6 @@ function decodeUplink(input) {
         // (as if the integer range from 0-255 is scaled to between 0.0V and 5.0V)
         capacitorVoltage: raw[10] * capacitorVoltageFactor,
       };
-      if (result.data.capacitorVoltage < 3.4) {
-        result.warnings.push(
-          "Low capacitor voltage may reduce transmit interval."
-        );
-      }
       break;
     case packetList.VD_DIRECT_AMPERAGE:
       let currentL1 = raw.readUInt16BE(1) / 16.0;
@@ -99,8 +94,6 @@ function decodeUplink(input) {
         // NOTE: Due to the limitations of Javascript and JSON this codec only uses 53 bits
         // (max of standard number type) This still gives an effective range of 102,821 years
         // at 10 Mega-Watts which is more than the Voltdrop is reasonably capable of measuring.
-        // Test and truncate the BigInt type into a normal number for JSON compatibility to the
-        // ES5 version of the codec.
         activeEnergyAccumulation: Number(
           BigInt.asUintN(53, raw.readBigUInt64BE(1))
         ),
@@ -209,11 +202,6 @@ exports.handler = async function (event, context) {
     if (decoded.errors.length > 0) {
       console.log("Error decoding:" + decoded.errors);
       throw "Error decoding:" + decoded.errors;
-    }
-
-    // Check if decoder has returned any warnings
-    if (decoded.warnings.length > 0) {
-      console.log("Warnings:" + decoded.warnings);
     }
 
     result = decoded.data;
