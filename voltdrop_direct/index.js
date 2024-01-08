@@ -15,14 +15,14 @@
  */
 function decodeUplink(input) {
   const packetList = {
-    VD_DIRECT_VOLTAGE_PF        : 40,
-    VD_DIRECT_AMPERAGE          : 41,
-    VD_DIRECT_ACT_ENERGY_CONF   : 42,
-    VD_DIRECT_ACT_ENERGY_UNCONF : 43,
-    VD_DIRECT_APP_ENERGY_CONF   : 44,
-    VD_DIRECT_APP_ENERGY_UNCONF : 45,
-    VD_DIRECT_STARTUP_DIAG      : 46,
-    VD_DIRECT_OPERATIONAL_DIAG  : 47,
+    VD_DIRECT_VOLTAGE_PF: 40,
+    VD_DIRECT_AMPERAGE: 41,
+    VD_DIRECT_ACT_ENERGY_CONF: 42,
+    VD_DIRECT_ACT_ENERGY_UNCONF: 43,
+    VD_DIRECT_APP_ENERGY_CONF: 44,
+    VD_DIRECT_APP_ENERGY_UNCONF: 45,
+    VD_DIRECT_STARTUP_DIAG: 46,
+    VD_DIRECT_OPERATIONAL_DIAG: 47,
   };
 
   // Constant factors for formulas
@@ -60,12 +60,9 @@ function decodeUplink(input) {
         // Capacitor Voltage Scalar - 1 byte
         // 8-bit unsigned integer representing the capacitor voltage.
         // (as if the integer range from 0-255 is scaled to between 0.0V and 5.0V)
-        capacitorVoltage: raw[10] * capacitorVoltageFactor
+        capacitorVoltage: raw[10] * capacitorVoltageFactor,
       };
-      if (result.data.capacitorVoltage < 3.4) {
-        result.warnings.push("Low capacitor voltage may reduce transmit interval.");
-      }
-    break;
+      break;
     case packetList.VD_DIRECT_AMPERAGE:
       let currentL1 = raw.readUInt16BE(1) / 16.0;
       let currentL2 = raw.readUInt16BE(3) / 16.0;
@@ -84,9 +81,9 @@ function decodeUplink(input) {
         // Temperature Scalar
         // 8-bit unsigned integer representing the temperature.
         // (as if the integer range from 0-255 is scaled to between -40C and 80C)
-        temperatureCelsius: raw[10] * temperatureCelsiusFactor - 40.0
+        temperatureCelsius: raw[10] * temperatureCelsiusFactor - 40.0,
       };
-    break;
+      break;
     case packetList.VD_DIRECT_ACT_ENERGY_CONF: // Intentional fall-through
     case packetList.VD_DIRECT_ACT_ENERGY_UNCONF:
       result.data = {
@@ -99,12 +96,14 @@ function decodeUplink(input) {
         // at 10 Mega-Watts which is more than the Voltdrop is reasonably capable of measuring.
         // Test and truncate the BigInt type into a normal number for JSON compatibility to the
         // ES5 version of the codec.
-        activeEnergyAccumulation: Number(BigInt.asUintN(53, raw.readBigUInt64BE(1))),
+        activeEnergyAccumulation: Number(
+          BigInt.asUintN(53, raw.readBigUInt64BE(1))
+        ),
         // Average Power Factor over all Phases - 2 bytes
         // 16-bit signed integer in network byte order (MSB/BE) expressed as percentage with 8 integer and 7 fractional bits
         averagePowerFactor: raw.readInt16BE(9) / 128.0,
       };
-    break;
+      break;
     case packetList.VD_DIRECT_APP_ENERGY_CONF: // Intentional fall-through
     case packetList.VD_DIRECT_APP_ENERGY_UNCONF:
       result.data = {
@@ -113,36 +112,41 @@ function decodeUplink(input) {
         // 64-bit unsigned integer in network byte order (MSB/BE)
         //
         // NOTE: See info about activeEnergyAccumulation and 53 bit numeric limitation
-        apparentEnergyAccumulation: Number(BigInt.asUintN(53, raw.readBigUInt64BE(1))),
+        apparentEnergyAccumulation: Number(
+          BigInt.asUintN(53, raw.readBigUInt64BE(1))
+        ),
         // Average Power Factor over all Phases - 2 bytes
         // 16-bit signed integer in network byte order (MSB/BE) expressed as percentage with 8 integer and 7 fractional bits
         averagePowerFactor: raw.readInt16BE(9) / 128.0,
       };
-    break;
+      break;
     case packetList.VD_DIRECT_STARTUP_DIAG:
       let resetReason = "Invalid";
       switch (raw.readUInt8(1)) {
         case 0:
-          resetReason = "Power Loss"
+          resetReason = "Power Loss";
           break;
         case 1:
-          resetReason = "Hardware Reset"
+          resetReason = "Hardware Reset";
           break;
         case 2:
-          resetReason = "Watchdog Timer"
+          resetReason = "Watchdog Timer";
           break;
         case 3:
-          resetReason = "Software Request"
+          resetReason = "Software Request";
           break;
         case 4:
-          resetReason = "CPU Lock-Up"
+          resetReason = "CPU Lock-Up";
           break;
       }
       // Format hashes to hexadecimal and pad to correct length if leading zeroes are needed
       let coreFirmwareHash = raw.readUInt32BE(2).toString(16).toUpperCase();
-      coreFirmwareHash = '0'.repeat(Math.max(0, 8 - coreFirmwareHash.length)) + coreFirmwareHash;
+      coreFirmwareHash =
+        "0".repeat(Math.max(0, 8 - coreFirmwareHash.length)) + coreFirmwareHash;
       let readerFirmwareHash = raw.readUInt16BE(6).toString(16).toUpperCase();
-      readerFirmwareHash = '0'.repeat(Math.max(0, 4 - readerFirmwareHash.length)) + readerFirmwareHash;
+      readerFirmwareHash =
+        "0".repeat(Math.max(0, 4 - readerFirmwareHash.length)) +
+        readerFirmwareHash;
       result.data = {
         resetReason: resetReason,
         coreFirmwareHash: "0x" + coreFirmwareHash,
@@ -158,7 +162,7 @@ function decodeUplink(input) {
         "Reader NACK",
         "Reader Overvoltage",
         "Reader Not Calibrated",
-        "Phase Sequence Error"
+        "Phase Sequence Error",
       ];
       let rawErrorConditions = raw.readUInt16BE(1);
       let systemErrorConditions = [];
@@ -265,10 +269,16 @@ function encodeDownlink(input) {
     let downlink = Buffer.alloc(input.data.packetTransmitSchedule.length + 3);
     downlink.writeUInt16BE(0x0030, 0);
     downlink.writeUInt8(input.data.packetTransmitSchedule.length, 2);
-    for (let index = 0; index < input.data.packetTransmitSchedule.length; index++) {
+    for (
+      let index = 0;
+      index < input.data.packetTransmitSchedule.length;
+      index++
+    ) {
       let id = input.data.packetTransmitSchedule[index];
       if (!validIDList.includes(id)) {
-        result.warnings.push("Invalid packet ID " + id + " replaced by gap in transmit schedule");
+        result.warnings.push(
+          "Invalid packet ID " + id + " replaced by gap in transmit schedule"
+        );
         downlink.writeUInt8(0, index + 3);
       } else {
         downlink.writeUInt8(id, index + 3);
@@ -282,8 +292,7 @@ function encodeDownlink(input) {
     if (scheduleValid) {
       result.bytes = Array.from(new Uint8Array(downlink.buffer));
       result.fPort = 3;
-    }
-    else {
+    } else {
       result.errors.push(
         "Invalid downlink: Packet transmit schedule must contain at least one transmitting element"
       );
@@ -306,7 +315,7 @@ function encodeDownlink(input) {
 
   if (typeof input.data.softReset !== "undefined") {
     if (input.data.softReset === true) {
-      result.bytes = [0x00, 0x5A];
+      result.bytes = [0x00, 0x5a];
       result.fPort = 3;
       return result;
     } else {
@@ -387,7 +396,7 @@ function decodeDownlink(input) {
         return result;
       }
       let dataLength = raw.readUInt8(2);
-      if (dataLength > (raw.length - 3)) {
+      if (dataLength > raw.length - 3) {
         result.errors.push(
           "Invalid downlink: transmit packet schedule length field larger than input data"
         );
@@ -412,7 +421,11 @@ function decodeDownlink(input) {
       for (let index = 0; index < dataLength; index++) {
         let id = raw.readUint8(index + 3);
         if (!validIDList.includes(id)) {
-          result.warnings.push("Invalid packet ID " + id + " in transmit schedule will be replaced by gap on device");
+          result.warnings.push(
+            "Invalid packet ID " +
+              id +
+              " in transmit schedule will be replaced by gap on device"
+          );
         } else if (id != 0) {
           // Enforce that there is at least one non-gap packet in schedule
           scheduleValid = true;
@@ -428,7 +441,7 @@ function decodeDownlink(input) {
     case 0x46: // factory reset
       result.data.factoryReset = true;
       break;
-    case 0x5A: // soft reset
+    case 0x5a: // soft reset
       result.data.softReset = true;
       break;
     default:

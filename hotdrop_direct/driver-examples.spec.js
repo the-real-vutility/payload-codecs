@@ -1,6 +1,5 @@
 const driver = require("./index.js");
 const examples = require("./examples.json");
-const es5dot1driver = require("./index-es5.js");
 
 /*..............
 Test suites

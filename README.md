@@ -2,17 +2,32 @@
 
 This repository holds JavaScript payload codecs for Vutility devices. These codecs follow an API as specified by the [LoRa Alliance.](https://resources.lora-alliance.org/document/ts013-1-0-0-payload-codec-api). Optionally, codecs may also include a version or versions of the index.js file targetted towards different ES versions. Below is a table with the supported devices and packets.
 
-## Codecs
+# Codecs
+## Standard Codecs
+Use these codecs as a base for implementing the Vutility device codecs in your own system.
 | Device | Codec | Codec Info | Description | Uplink Decode | Downlink Encode | Downlink Decode
 | --- | --- | --- | --- | :---: | :---: | :---: |
 | `hotdrop direct` | [index.js](hotdrop_direct/index.js) | [readme](hotdrop_direct/index-readme.md) | HotDrop Direct Codec | ✅ | ✅ | ✅
-| `hotdrop direct` | [index-es5.js](hotdrop_direct/index-es5.js) | [readme](hotdrop_direct/index-es5-readme.md)  | ES5 Compatible HotDrop Direct Codec | ✅ | ✅* | ❌
 | `pulsedrop direct` | [index.js](pulsedrop_direct/index.js) | [readme](pulsedrop_direct/index-readme.md) | PulseDrop Direct Codec | ✅ | ✅ | ✅
-| `pulsedrop direct` | [index-es5.js](pulsedrop_direct/index-es5.js) | [readme](pulsedrop_direct/index-es5-readme.md)  | ES5 Compatible PulseDrop Direct Codec | ✅ | ✅* | ❌
 | `voltdrop direct` | [index.js](voltdrop_direct/index.js) | [readme](voltdrop_direct/index-readme.md) | VoltDrop Direct Codec | ✅ | ✅ | ✅
+
+## ES5 Codecs
+Use these codecs as a base for implementing the Vutility device codecs in your own system if your system does not allow for modern JavaScript features such as ```Buffer```.
+| Device | Codec | Codec Info | Description | Uplink Decode | Downlink Encode | Downlink Decode
+| --- | --- | --- | --- | :---: | :---: | :---: |
+| `hotdrop direct` | [index-es5.js](hotdrop_direct/index-es5.js) | [readme](hotdrop_direct/index-es5-readme.md)  | ES5 Compatible HotDrop Direct Codec | ✅ | ✅* | ❌
+| `pulsedrop direct` | [index-es5.js](pulsedrop_direct/index-es5.js) | [readme](pulsedrop_direct/index-es5-readme.md)  | ES5 Compatible PulseDrop Direct Codec | ✅ | ✅* | ❌
 | `voltdrop direct` | [index-es5.js](voltdrop_direct/index-es5.js) | [readme](voltdrop_direct/index-es5-readme.md)  | ES5 Compatible VoltDrop Direct Codec | ✅ | ✅* | ❌
 
 *\*Limited options for encoded downlinks.*
+
+## AWS Lambda Function Codecs
+Use these codecs for implementing a decode uplink Lambda function in AWS.
+| Device | Codec | Codec Info | Description | Uplink Decode | Downlink Encode | Downlink Decode
+| --- | --- | --- | --- | :---: | :---: | :---: |
+| `hotdrop direct` | [index.js](hotdrop_direct/aws-iot-core/index.js) | [readme](hotdrop_direct/aws-iot-core/readme.md)  | Decoding Lambda Function (AWS) | ✅ | ❌ | ❌
+| `pulsedrop direct` | [index.js](pulsedrop_direct/aws-iot-core/index.js) | [readme](pulsedrop_direct/aws-iot-core/readme.md)  | Decoding Lambda Function (AWS) | ✅ | ❌ | ❌
+| `voltdrop direct` | [index.js](voltdrop_direct/aws-iot-core/index.js) | [readme](voltdrop_direct/aws-iot-core/readme.md)  | Decoding Lambda Function (AWS) | ✅ | ❌ | ❌
 
 ### Development Notes
  - Framework: node.js
