@@ -44,4 +44,6 @@ Example:
 }
 ```
 
+For additional information on the decoded values and types for the PulseDrop direct measurements [check the uplink.schema.json file](/pulsedrop_direct/uplink.schema.json)
+
 For additional information on downlinks, check the [base PulseDrop codec README](/pulsedrop_direct/index-readme.md).

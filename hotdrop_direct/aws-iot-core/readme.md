@@ -50,4 +50,7 @@ Example:
     "warnings": []
 }
 ```
+
+For additional information on the decoded values and types for the HotDrop direct measurements [check the uplink.schema.json file](/hotdrop_direct/uplink.schema.json)
+
 For additional information on downlinks, check the [base HotDrop codec README](/hotdrop_direct/index-readme.md).

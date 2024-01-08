@@ -96,4 +96,6 @@ The operational diagnostic is sent when certain error conditions occur. Dependin
 }
 ```
 
+For additional information on the decoded values and types for the VoltDrop direct meausrements [check the uplink.schema.json file](/voltdrop_direct/uplink.schema.json)
+
 For additional information on downlinks, check the [base VoltDrop codec README](/voltdrop_direct/index-readme.md).
