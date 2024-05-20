@@ -157,13 +157,22 @@ Example:
 
 ### Startup Diagnostic (Packet #46)
 **NOTE:** In the event that the LoRaWAN core cannot communicate with the metering hardware, the `Reader Firmware Hash` field will read as `0xFFFF` and the core will restart repeatedly until the situation is resolved. Check the snap-together connection between the LoRaWAN core and metering hardware. Contact Vutility if a device loop resets and sends the startup diagnostic repeatedly.
+
 | Reset Reason | Description |
 | --- | --- |
 | Power Loss | The system is starting up after power has been applied. (typical) |
 | Hardware Reset | The system was reset due to diagnostic hardware. |
 | Watchdog Timer | The system was reset due to incorrect software operation. |
-| Software Request | The system was reset due to software request. (i.e. via downlink) |
+| Unknown Software Request | The system was reset due to an untraceable software request. (i.e. via software updater) |
 | CPU Lock-Up | The system was reset due to a hardware fault. |
+| Hard-Fault | The system was reset due to execution of an invalid operation. |
+| Application Request | The system was reset due to a traceable software request (i.e. via soft reset downlink) |
+| Factory Reset | The system was reset after clearing parameters due to receiving the factory reset downlink. |
+| Reader Non-Responsive | The system was reset due to failing communications with the metering hardware. |
+| Failed Link-Check | The system was reset after failing multiple LoRaWAN link check requests to the gateway. |
+| Assertion Failure | The system was reset due to a failed assertion in software. |
+
+In the event that a "Watchdog Timer", "Hard-Fault", or "Assertion Failure" reset occurs, please contact Vutility and provide the raw startup diagnostic data (including reserved bytes) for analysis.
 
 ### Operational Diagnostic (Packet #47)
 

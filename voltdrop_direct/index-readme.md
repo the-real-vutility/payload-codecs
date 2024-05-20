@@ -155,10 +155,10 @@ The following packet identifiers are used when specifying a Voltdrop schedule. C
 | --- | :---: | :---: | --- |
 | Phase Voltage and Power Factor  | 40 (0x28) | ❌ | Discrete phase average voltage and power factors. |
 | Phase Amperage and Max Amperage | 41 (0x29) | ❌ | Discrete phase average and maximum currents. |
-| Active Energy Accumulation      | 42 (0x2B) | ✅ | Total active energy accumulation and average power factor. |
-| Active Energy Accumulation      | 43 (0x2C) | ❌ | Total active energy accumulation and average power factor. Unconfirmed variant of previous packet. |
-| Apparent Energy Accumulation    | 44 (0x2D) | ✅ | Total apparent energy accumulation and average power factor.|
-| Apparent Energy Accumulation    | 45 (0x2E) | ❌ | Total apparent energy accumulation and average power factor. Unconfirmed variant of previous packet. |
+| Active Energy Accumulation      | 42 (0x2A) | ✅ | Total active energy accumulation and average power factor. |
+| Active Energy Accumulation      | 43 (0x2B) | ❌ | Total active energy accumulation and average power factor. Unconfirmed variant of previous packet. |
+| Apparent Energy Accumulation    | 44 (0x2C) | ✅ | Total apparent energy accumulation and average power factor.|
+| Apparent Energy Accumulation    | 45 (0x2D) | ❌ | Total apparent energy accumulation and average power factor. Unconfirmed variant of previous packet. |
 | None (Transmit Gap)             | 0  (0x00) | ❌ | Used to introduce delays/gaps in the transmit schedule. |
 
 Example:
@@ -189,22 +189,32 @@ Example:
 
 | Packet Schedule (Assuming 60s transmit interval) | Raw Packet (Hex) | Base64 Encoding | Default |
 | --- | --- | --- | :---: |
-| Alternating voltage and current packets on 1 minute intervals with confirmed active energy once every 5 minutes. | [00, 30, 05, 28, 29, 28, 29, 2B] | ADAFKCkoKSs= | ✅ |
-| Alternating voltage and current packets on 1 minute intervals with confirmed active energy once every 15 minutes. | [00, 30, 0F, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 2B] | ADAPKCkoKSgpKCkoKSgpKCkr | ❌ |
-| Voltage and unconfirmed active energy once every 10 minutes. | [00, 30, 0A, 28, 2E, 00, 00, 00, 00, 00, 00, 00, 00] | ADAKKC4AAAAAAAAAAA== | ❌ |
+| Alternating voltage and current packets on 1 minute intervals with active energy once every 5 minutes. | [00, 30, 05, 28, 29, 28, 29, 2B] | ADAFKCkoKSs= | ✅ |
+| Alternating voltage and current packets on 1 minute intervals with active energy once every 15 minutes. | [00, 30, 0F, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 28, 29, 2B] | ADAPKCkoKSgpKCkoKSgpKCkr | ❌ |
+| Voltage and active energy once every 10 minutes. | [00, 30, 0A, 28, 2E, 00, 00, 00, 00, 00, 00, 00, 00] | ADAKKC4AAAAAAAAAAA== | ❌ |
 
 
 ## Diagnostic Packet Detailed Information
 
 ### Startup Diagnostic (Packet #46)
 **NOTE:** In the event that the LoRaWAN core cannot communicate with the metering hardware, the `Reader Firmware Hash` field will read as `0xFFFF` and the core will restart repeatedly until the situation is resolved. Check the snap-together connection between the LoRaWAN core and metering hardware. Contact Vutility if a device loop resets and sends the startup diagnostic repeatedly.
+
 | Reset Reason | Description |
 | --- | --- |
 | Power Loss | The system is starting up after power has been applied. (typical) |
 | Hardware Reset | The system was reset due to diagnostic hardware. |
 | Watchdog Timer | The system was reset due to incorrect software operation. |
-| Software Request | The system was reset due to software request. (i.e. via downlink) |
+| Unknown Software Request | The system was reset due to an untraceable software request. (i.e. via software updater) |
 | CPU Lock-Up | The system was reset due to a hardware fault. |
+| Hard-Fault | The system was reset due to execution of an invalid operation. |
+| Application Request | The system was reset due to a traceable software request (i.e. via soft reset downlink) |
+| Factory Reset | The system was reset after clearing parameters due to receiving the factory reset downlink. |
+| Reader Non-Responsive | The system was reset due to failing communications with the metering hardware. |
+| Failed Link-Check | The system was reset after failing multiple LoRaWAN link check requests to the gateway. |
+| Assertion Failure | The system was reset due to a failed assertion in software. |
+
+In the event that a "Watchdog Timer", "Hard-Fault", or "Assertion Failure" reset occurs, please contact Vutility and provide the raw startup diagnostic data (including reserved bytes) for analysis.
+
 
 ### Operational Diagnostic (Packet #47)
 
