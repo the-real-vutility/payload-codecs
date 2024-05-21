@@ -438,7 +438,7 @@
     },
     "output": {
       "data": {
-        "resetReason": "Software Request",
+        "resetReason": "Unknown Software Request",
         "coreFirmwareHash": "0xDEADBEEF",
         "readerFirmwareHash": "0xCAFE"
       },
@@ -451,12 +451,120 @@
     "description": "Startup Diagnostic Valid 4",
     "input": {
       "bytes": [46, 4, 222, 173, 190, 239, 202, 254, 0, 0, 0],
-      "fPort": 4,
+      "fPort": 3,
       "recvTime": "2023-05-02T20:00:00.000+00:00"
     },
     "output": {
       "data": {
         "resetReason": "CPU Lock-Up",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Startup Diagnostic Valid 5",
+    "input": {
+      "bytes": [46, 5, 222, 173, 190, 239, 202, 254, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "resetReason": "Hard-Fault",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Startup Diagnostic Valid 6",
+    "input": {
+      "bytes": [46, 6, 222, 173, 190, 239, 202, 254, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "resetReason": "Application Request",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Startup Diagnostic Valid 7",
+    "input": {
+      "bytes": [46, 7, 222, 173, 190, 239, 202, 254, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "resetReason": "Factory Reset",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Startup Diagnostic Valid 8",
+    "input": {
+      "bytes": [46, 8, 222, 173, 190, 239, 202, 254, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "resetReason": "Reader Non-Responsive",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Startup Diagnostic Valid 9",
+    "input": {
+      "bytes": [46, 9, 222, 173, 190, 239, 202, 254, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "resetReason": "Failed Link-Check",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Startup Diagnostic Valid 10",
+    "input": {
+      "bytes": [46, 10, 222, 173, 190, 239, 202, 254, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "resetReason": "Assertion Failure",
         "coreFirmwareHash": "0xDEADBEEF",
         "readerFirmwareHash": "0xCAFE"
       },

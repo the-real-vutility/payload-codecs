@@ -131,10 +131,28 @@ function decodeUplink(input) {
           resetReason = "Watchdog Timer";
           break;
         case 3:
-          resetReason = "Software Request";
+          resetReason = "Unknown Software Request";
           break;
         case 4:
           resetReason = "CPU Lock-Up";
+          break;
+        case 5:
+          resetReason = "Hard-Fault";
+          break;
+        case 6:
+          resetReason = "Application Request";
+          break;
+        case 7:
+          resetReason = "Factory Reset";
+          break;
+        case 8:
+          resetReason = "Reader Non-Responsive";
+          break;
+        case 9:
+          resetReason = "Failed Link-Check";
+          break;
+        case 10:
+          resetReason = "Assertion Failure";
           break;
       }
       // Format hashes to hexadecimal and pad to correct length if leading zeroes are needed
