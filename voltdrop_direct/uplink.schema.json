@@ -14,6 +14,15 @@
       "voltageL3": {
         "type": "number"
       },
+      "phaseAngleL1": {
+        "type": "number"
+      },
+      "phaseAngleL2": {
+        "type": "number"
+      },
+      "phaseAngleL3": {
+        "type": "number"
+      },
       "powerFactorL1": {
         "type": "number"
       },

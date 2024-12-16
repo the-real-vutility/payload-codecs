@@ -1,6 +1,57 @@
 [
   {
     "type": "uplink",
+    "description": "Consolidated Voltage, Phase Angle, Amperage, and Max Amperage Zeroed",
+    "input": {
+      "bytes": [38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "voltageL1": 0,
+        "voltageL2": 0,
+        "voltageL3": 0,
+        "phaseAngleL1": 0,
+        "phaseAngleL2": 0,
+        "phaseAngleL3": 0,
+        "capacitorVoltage": 0,
+        "currentL1": 0,
+        "currentL2": 0,
+        "currentL3": 0,
+        "maxCurrentL1": 0,
+        "maxCurrentL2": 0,
+        "maxCurrentL3": 0,
+        "temperatureCelsius": -40
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Phase Voltage and Phase Angle Zeroed",
+    "input": {
+      "bytes": [39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "voltageL1": 0,
+        "voltageL2": 0,
+        "voltageL3": 0,
+        "phaseAngleL1": 0,
+        "phaseAngleL2": 0,
+        "phaseAngleL3": 0,
+        "capacitorVoltage": 0
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
     "description": "Phase Voltage and Power Factor Zeroed",
     "input": {
       "bytes": [40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -113,6 +164,57 @@
   },
   {
     "type": "uplink",
+    "description": "Consolidated Voltage, Phase Angle, Amperage, and Max Amperage All Ones",
+    "input": {
+      "bytes": [38, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "voltageL1": 1023.984375,
+        "voltageL2": 1023.984375,
+        "voltageL3": 1023.984375,
+        "phaseAngleL1": 358.59375,
+        "phaseAngleL2": 358.59375,
+        "phaseAngleL3": 358.59375,
+        "capacitorVoltage": 5,
+        "currentL1": 4095.9375,
+        "currentL2": 4095.9375,
+        "currentL3": 4095.9375,
+        "maxCurrentL1": 36735.439453125,
+        "maxCurrentL2": 36735.439453125,
+        "maxCurrentL3": 36735.439453125,
+        "temperatureCelsius": 80
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Phase Voltage and Phase Angle All Ones",
+    "input": {
+      "bytes": [39, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "voltageL1": 1023.984375,
+        "voltageL2": 1023.984375,
+        "voltageL3": 1023.984375,
+        "phaseAngleL1": 358.59375,
+        "phaseAngleL2": 358.59375,
+        "phaseAngleL3": 358.59375,
+        "capacitorVoltage": 5
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
     "description": "Phase Voltage and Power Factor All Ones",
     "input": {
       "bytes": [40, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255],
@@ -165,7 +267,7 @@
     },
     "output": {
       "data": {
-        "activeEnergyAccumulation": 9007199254740991,
+        "activeEnergyAccumulation": -1,
         "averagePowerFactor": -0.0078125
       },
       "errors": [],
@@ -182,7 +284,7 @@
     },
     "output": {
       "data": {
-        "activeEnergyAccumulation": 9007199254740991,
+        "activeEnergyAccumulation": -1,
         "averagePowerFactor": -0.0078125
       },
       "errors": [],
@@ -218,6 +320,57 @@
       "data": {
         "apparentEnergyAccumulation": 9007199254740991,
         "averagePowerFactor": -0.0078125
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Consolidated Voltage, Phase Angle, Amperage, and Max Amperage Random",
+    "input": {
+      "bytes": [38, 79, 36, 145, 31, 235, 128, 125, 236, 38, 133, 226, 76, 114, 175, 88, 214, 147, 74, 242, 159],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "voltageL1": 316.5625,
+        "voltageL2": 580.484375,
+        "voltageL3": 942,
+        "phaseAngleL1": 175.78125,
+        "phaseAngleL2": 331.875,
+        "phaseAngleL3": 53.4375,
+        "capacitorVoltage": 2.60784313725490196078,
+        "currentL1": 3620.75,
+        "currentL2": 1834.9375,
+        "currentL3": 1421.375,
+        "maxCurrentL1": 20253.5703125,
+        "maxCurrentL2": 6078.23046875,
+        "maxCurrentL3": 12170.5234375,
+        "temperatureCelsius": 34.82352941176471
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Phase Voltage and Phase Angle Random",
+    "input": {
+      "bytes": [39, 79, 36, 145, 31, 235, 128, 125, 236, 38, 133],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "voltageL1": 316.5625,
+        "voltageL2": 580.484375,
+        "voltageL3": 942,
+        "phaseAngleL1": 175.78125,
+        "phaseAngleL2": 331.875,
+        "phaseAngleL3": 53.4375,
+        "capacitorVoltage": 2.60784313725490196078
       },
       "errors": [],
       "warnings": []
@@ -269,7 +422,7 @@
   },
   {
     "type": "uplink",
-    "description": "Active Energy Accumulation Confirmed Random",
+    "description": "Active Energy Accumulation Confirmed Random Positive",
     "input": {
       "bytes": [42, 74, 100, 102, 26, 90, 246, 218, 238, 111, 14],
       "fPort": 3,
@@ -286,7 +439,7 @@
   },
   {
     "type": "uplink",
-    "description": "Active Energy Accumulation Unconfirmed Random",
+    "description": "Active Energy Accumulation Unconfirmed Random Positive",
     "input": {
       "bytes": [43, 96, 65, 6, 141, 52, 183, 80, 63, 62, 249],
       "fPort": 3,
@@ -295,6 +448,40 @@
     "output": {
       "data": {
         "activeEnergyAccumulation": 288678521294911,
+        "averagePowerFactor": 125.9453125
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Active Energy Accumulation Confirmed Random Negative",
+    "input": {
+      "bytes": [42, 255, 252, 221, 127, 16, 179, 92, 0, 111, 14],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "activeEnergyAccumulation": -9223372030000000,
+        "averagePowerFactor": 222.109375
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Active Energy Accumulation Unconfirmed Random Negative",
+    "input": {
+      "bytes": [43, 255, 247, 44, 240, 249, 113, 206, 133, 62, 249],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "activeEnergyAccumulation": -4500000000000123,
         "averagePowerFactor": 125.9453125
       },
       "errors": [],
