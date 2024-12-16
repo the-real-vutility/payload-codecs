@@ -1,0 +1,806 @@
+[
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Phase Voltage and Power Factor Zeroed",
+    "input": {
+      "bytes": [40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "voltageL1": 0,
+        "voltageL2": 0,
+        "voltageL3": 0,
+        "powerFactorL1": 0,
+        "powerFactorL2": 0,
+        "powerFactorL3": 0,
+        "capacitorVoltage": 0
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Phase Amperage and Max Amperage Zeroed",
+    "input": {
+      "bytes": [41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "currentL1": 0,
+        "currentL2": 0,
+        "currentL3": 0,
+        "maxCurrentL1": 0,
+        "maxCurrentL2": 0,
+        "maxCurrentL3": 0,
+        "temperatureCelsius": -40
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Active Energy Accumulation Confirmed Zeroed",
+    "input": {
+      "bytes": [42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "activeEnergyAccumulation": 0,
+        "averagePowerFactor": 0
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Active Energy Accumulation Unconfirmed Zeroed",
+    "input": {
+      "bytes": [43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "activeEnergyAccumulation": 0,
+        "averagePowerFactor": 0
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Apparent Energy Accumulation Confirmed Zeroed",
+    "input": {
+      "bytes": [44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "apparentEnergyAccumulation": 0,
+        "averagePowerFactor": 0
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Apparent Energy Accumulation Unconfirmed Zeroed",
+    "input": {
+      "bytes": [45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "apparentEnergyAccumulation": 0,
+        "averagePowerFactor": 0
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Phase Voltage and Power Factor All Ones",
+    "input": {
+      "bytes": [40, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255]
+    },
+    "output": {
+      "data": {
+        "voltageL1": 1023.984375,
+        "voltageL2": 1023.984375,
+        "voltageL3": 1023.984375,
+        "powerFactorL1": -1,
+        "powerFactorL2": -1,
+        "powerFactorL3": -1,
+        "capacitorVoltage": 5
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Phase Amperage and Max Amperage All Ones",
+    "input": {
+      "bytes": [41, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255]
+    },
+    "output": {
+      "data": {
+        "currentL1": 4095.9375,
+        "currentL2": 4095.9375,
+        "currentL3": 4095.9375,
+        "maxCurrentL1": 36735.439453125,
+        "maxCurrentL2": 36735.439453125,
+        "maxCurrentL3": 36735.439453125,
+        "temperatureCelsius": 80
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Active Energy Accumulation Confirmed All Ones",
+    "input": {
+      "bytes": [42, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255]
+    },
+    "output": {
+      "data": {
+        "activeEnergyAccumulation": 9007199254740991,
+        "averagePowerFactor": -0.0078125
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Active Energy Accumulation Unconfirmed All Ones",
+    "input": {
+      "bytes": [43, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255]
+    },
+    "output": {
+      "data": {
+        "activeEnergyAccumulation": 9007199254740991,
+        "averagePowerFactor": -0.0078125
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Apparent Energy Accumulation Confirmed All Ones",
+    "input": {
+      "bytes": [44, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255]
+    },
+    "output": {
+      "data": {
+        "apparentEnergyAccumulation": 9007199254740991,
+        "averagePowerFactor": -0.0078125
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Apparent Energy Accumulation Unconfirmed All Ones",
+    "input": {
+      "bytes": [45, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255]
+    },
+    "output": {
+      "data": {
+        "apparentEnergyAccumulation": 9007199254740991,
+        "averagePowerFactor": -0.0078125
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Phase Voltage and Power Factor Random",
+    "input": {
+      "bytes": [40, 79, 36, 145, 31, 235, 128, 125, 236, 38, 133]
+    },
+    "output": {
+      "data": {
+        "voltageL1": 316.5625,
+        "voltageL2": 580.484375,
+        "voltageL3": 942,
+        "powerFactorL1": 125,
+        "powerFactorL2": -20,
+        "powerFactorL3": 38,
+        "capacitorVoltage": 2.60784313725490196078
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Phase Amperage and Max Amperage Random",
+    "input": {
+      "bytes": [41, 226, 76, 114, 175, 88, 214, 147, 74, 242, 159]
+    },
+    "output": {
+      "data": {
+        "currentL1": 3620.75,
+        "currentL2": 1834.9375,
+        "currentL3": 1421.375,
+        "maxCurrentL1": 20253.5703125,
+        "maxCurrentL2": 6078.23046875,
+        "maxCurrentL3": 12170.5234375,
+        "temperatureCelsius": 34.82352941176471
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Active Energy Accumulation Confirmed Random",
+    "input": {
+      "bytes": [42, 74, 100, 102, 26, 90, 246, 218, 238, 111, 14]
+    },
+    "output": {
+      "data": {
+        "activeEnergyAccumulation": 1238163288152814,
+        "averagePowerFactor": 222.109375
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Active Energy Accumulation Unconfirmed Random",
+    "input": {
+      "bytes": [43, 96, 65, 6, 141, 52, 183, 80, 63, 62, 249]
+    },
+    "output": {
+      "data": {
+        "activeEnergyAccumulation": 288678521294911,
+        "averagePowerFactor": 125.9453125
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Apparent Energy Accumulation Confirmed Random",
+    "input": {
+      "bytes": [44, 48, 198, 104, 201, 239, 219, 154, 45, 209, 166]
+    },
+    "output": {
+      "data": {
+        "apparentEnergyAccumulation": 1804066382125613,
+        "averagePowerFactor": -92.703125
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Apparent Energy Accumulation Unconfirmed Random",
+    "input": {
+      "bytes": [45, 204, 198, 219, 214, 47, 52, 36, 136, 106, 64]
+    },
+    "output": {
+      "data": {
+        "apparentEnergyAccumulation": 1930562821694600,
+        "averagePowerFactor": 212.5
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Error: Short packet length",
+    "expectException": true,
+    "input": {
+      "bytes": [40, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "errorMessage": "Payload length must be 11 bytes"
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Error: Long packet length",
+    "expectException": true,
+    "input": {
+      "bytes": [40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "errorMessage": "Payload length must be 11 bytes"
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Error: Unsupported packet ID",
+    "expectException": true,
+    "input": {
+      "bytes": [15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "errorMessage": "Unsupported packet ID"
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Zeroed",
+    "input": {
+      "bytes": [46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Power Loss",
+        "coreFirmwareHash": "0x00000000",
+        "readerFirmwareHash": "0x0000"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Valid 1",
+    "input": {
+      "bytes": [46, 1, 222, 173, 190, 239, 202, 254, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Hardware Reset",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Valid 2",
+    "input": {
+      "bytes": [46, 2, 222, 173, 190, 239, 202, 254, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Watchdog Timer",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Valid 3",
+    "input": {
+      "bytes": [46, 3, 222, 173, 190, 239, 202, 254, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Unknown Software Request",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Valid 4",
+    "input": {
+      "bytes": [46, 4, 222, 173, 190, 239, 202, 254, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "CPU Lock-Up",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Valid 5",
+    "input": {
+      "bytes": [46, 5, 222, 173, 190, 239, 202, 254, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Hard-Fault",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Valid 6",
+    "input": {
+      "bytes": [46, 6, 222, 173, 190, 239, 202, 254, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Application Request",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Valid 7",
+    "input": {
+      "bytes": [46, 7, 222, 173, 190, 239, 202, 254, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Factory Reset",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Valid 8",
+    "input": {
+      "bytes": [46, 8, 222, 173, 190, 239, 202, 254, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Reader Non-Responsive",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Valid 9",
+    "input": {
+      "bytes": [46, 9, 222, 173, 190, 239, 202, 254, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Failed Link-Check",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Valid 10",
+    "input": {
+      "bytes": [46, 10, 222, 173, 190, 239, 202, 254, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Assertion Failure",
+        "coreFirmwareHash": "0xDEADBEEF",
+        "readerFirmwareHash": "0xCAFE"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Startup Diagnostic Invalid",
+    "input": {
+      "bytes": [46, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255]
+    },
+    "output": {
+      "data": {
+        "resetReason": "Invalid",
+        "coreFirmwareHash": "0xFFFFFFFF",
+        "readerFirmwareHash": "0xFFFF"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Operational Diagnostic Zeroed",
+    "input": {
+      "bytes": [47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "systemErrorConditions": [],
+        "registerID": "0x0"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Operational Diagnostic Alternating",
+    "input": {
+      "bytes": [47, 0, 170, 170, 85, 0, 0, 0, 0, 0, 0]
+    },
+    "output": {
+      "data": {
+        "systemErrorConditions": [
+          "Core Voltage Drop",
+          "Reader Timeout",
+          "Reader Overvoltage",
+          "Phase Sequence Error"
+        ],
+        "registerID": "0xAA55"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Operational Diagnostic All",
+    "input": {
+      "bytes": [47, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255]
+    },
+    "output": {
+      "data": {
+        "systemErrorConditions": [
+          "Invalid Downlink",
+          "Core Voltage Drop",
+          "EEPROM Fail",
+          "Reader Timeout",
+          "Reader NACK",
+          "Reader Overvoltage",
+          "Reader Not Calibrated",
+          "Phase Sequence Error"
+        ],
+        "registerID": "0xFFFF"
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "downlink transmit interval (1 min) [default configuration]",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 60
+      }
+    },
+    "output": {
+      "bytes": [0, 49, 0, 0, 0, 60]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "downlink transmit interval (2 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 120
+      }
+    },
+    "output": {
+      "bytes": [0, 49, 0, 0, 0, 120]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "downlink transmit interval (5 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 300
+      }
+    },
+    "output": {
+      "bytes": [0, 49, 0, 0, 1, 44]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "downlink transmit interval (15 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 900
+      }
+    },
+    "output": {
+      "bytes": [0, 49, 0, 0, 3, 132]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "downlink transmit interval (30 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 1800
+      }
+    },
+    "output": {
+      "bytes": [0, 49, 0, 0, 7, 8]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: downlink transmit interval less than 1 min",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": -60
+      }
+    },
+    "errorMessage": "Invalid downlink: transmit interval cannot be less than 1 min"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: downlink transmit interval greater than 30 min",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 1801
+      }
+    },
+    "errorMessage": "Invalid downlink: transmit interval cannot be greater than 30 min"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "factory reset",
+    "input": {
+      "data": {
+        "factoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [0, 70]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: factory reset is false",
+    "expectException": true,
+    "input": {
+      "data": {
+        "factoryReset": false
+      }
+    },
+      "errorMessage": "Invalid downlink: valid factoryReset value is true"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "soft reset",
+    "input": {
+      "data": {
+        "softReset": true
+      }
+    },
+    "output": {
+      "bytes": [0, 90]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: soft reset is false",
+    "expectException": true,
+    "input": {
+      "data": {
+        "softReset": false
+      }
+    },
+      "errorMessage": "Invalid downlink: valid softReset value is true"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: invalid data field",
+    "expectException": true,
+    "input": {
+      "data": {
+        "invalid": 112
+      }
+    },
+      "errorMessage": "Invalid downlink: invalid downlink parameter name"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 60,
+        "factoryReset": true
+      }
+    },
+      "errorMessage": "Invalid downlink: More than one downlink type defined"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 1000,
+        "packetTransmitSchedule": [0, 0]
+      }
+    },
+      "errorMessage": "Invalid downlink: More than one downlink type defined"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "expectException": true,
+    "input": {
+      "data": {
+        "packetTransmitSchedule": [0, 0],
+        "factoryReset": true
+      }
+    },
+      "errorMessage": "Invalid downlink: More than one downlink type defined"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 60,
+        "softReset": true
+      }
+    },
+      "errorMessage": "Invalid downlink: More than one downlink type defined"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 300,
+        "softReset": true
+      }
+    },
+      "errorMessage": "Invalid downlink: More than one downlink type defined"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "expectException": true,
+    "input": {
+      "data": {
+        "packetTransmitSchedule": [41, 42],
+        "softReset": true
+      }
+    },
+      "errorMessage": "Invalid downlink: More than one downlink type defined"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Transmit Packet Schedule",
+    "input": {
+      "data": {
+        "packetTransmitSchedule": [40, 41, 40, 41, 0, 42, 43, 44, 45]
+      }
+    },
+    "output": {
+      "bytes": [0, 48, 9, 40, 41, 40, 41, 0, 42, 43, 44, 45]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Transmit Packet Schedule Unknown ID",
+    "input": {
+      "data": {
+        "packetTransmitSchedule": [40, 41, 40, 41, 0, 42, 22, 43, 44, 45]
+      }
+    },
+    "output": {
+      "bytes": [0, 48, 10, 40, 41, 40, 41, 0, 42, 0, 43, 44, 45]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Transmit Packet Schedule Long",
+    "input": {
+      "data": {
+        "packetTransmitSchedule": [
+          40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      }
+    },
+    "output": {
+      "bytes": [
+        0, 48, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: Transmit Packet Schedule Empty",
+    "expectException": true,
+    "input": {
+      "data": {
+        "packetTransmitSchedule": []
+      }
+    },
+      "errors": "Invalid downlink: Packet transmit schedule must contain at least one element"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: Transmit Packet Schedule Too Long",
+    "expectException": true,
+    "input": {
+      "data": {
+        "packetTransmitSchedule": [
+          40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]
+      }
+    },
+      "errorMessage": "Invalid downlink: Packet transmit schedule cannot be longer than 60 elements"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Transmit Packet Schedule Gap Only",
+    "expectException": true,
+    "input": {
+      "data": {
+        "packetTransmitSchedule": [0]
+      }
+    },
+      "errorMessage": "Invalid downlink: Packet transmit schedule must contain at least one transmitting element"
+  }
+]
