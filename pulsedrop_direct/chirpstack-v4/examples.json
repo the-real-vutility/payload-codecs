@@ -1,0 +1,361 @@
+[
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "standard uplink, empty",
+    "input": {
+      "bytes": [
+        28,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "output": {
+      "data": {
+        "pulseCount": 0,
+        "capacitorVoltage": 0,
+        "temperatureCelsius": -40
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "standard uplink, whole numbers",
+    "input": {
+      "bytes": [
+        28,
+        255,
+        17,
+        0,
+        0,
+        13,
+        232,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "output": {
+      "data": {
+        "pulseCount": 3560,
+        "capacitorVoltage": 5,
+        "temperatureCelsius": -32
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "standard uplink, fractional numbers",
+    "input": {
+      "bytes": [
+        28,
+        197,
+        125,
+        0,
+        0,
+        13,
+        232,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "output": {
+      "data": {
+        "pulseCount": 3560,
+        "capacitorVoltage": 3.8627450980392157,
+        "temperatureCelsius": 18.823529411764703
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "max uplink",
+    "input": {
+      "bytes": [
+        28,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "output": {
+      "data": {
+        "pulseCount": 4294967295,
+        "capacitorVoltage": 5,
+        "temperatureCelsius": 80
+      }
+    }
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Error: uplink length greater than 11 bytes",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        28,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "errorMessage": "Payload length must be 11 bytes"
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Error: uplink length less than 11 bytes",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        28,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "errorMessage": "Payload length must be 11 bytes"
+  },
+  {
+    "type": "chirpstack-v4-uplink",
+    "description": "Error: packet type is not 50",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        15,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "errorMessage": "Payload packet ID is not equal to 28"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "downlink transmit interval (1 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 60
+      }
+    },
+    "output": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        112,
+        66,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "downlink transmit interval (2 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 120
+      }
+    },
+    "output": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        240,
+        66,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "downlink transmit interval (5 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 300
+      }
+    },
+    "output": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        150,
+        67,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "downlink transmit interval (15 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 900
+      }
+    },
+    "output": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        97,
+        68,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "downlink transmit interval (30 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 1800
+      }
+    },
+    "output": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        225,
+        68,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: downlink transmit interval less than 1 min",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": -60
+      }
+    },
+    "errorMessage": "Invalid downlink: transmit interval cannot be less than 1 min"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: downlink transmit interval greater than 30 min",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 1801
+      }
+    },
+    "errorMessage": "Invalid downlink: transmit interval cannot be greater than 30 min"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "factory reset",
+    "input": {
+      "data": {
+        "factoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [
+        70,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: factory reset is false",
+    "expectException": true,
+    "input": {
+      "data": {
+        "factoryReset": false
+      }
+    },
+    "errorMessage": "Invalid downlink: valid factoryReset value is true"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: invalid data field",
+    "expectException": true,
+    "input": {
+      "data": {
+        "invalid": 112
+      }
+    },
+    "errorMessage": "Invalid downlink: invalid downlink parameter name"
+  },
+  {
+    "type": "chirpstack-v4-downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 60,
+        "factoryReset": true
+      }
+    },
+    "errorMessage": "Invalid downlink: More than one downlink type defined"
+  }
+]
