@@ -358,6 +358,3 @@ function encodeDownlink(input) {
   delete result.bytes;
   return result;
 }
-
-exports.decodeUplink = decodeUplink;
-exports.encodeDownlink = encodeDownlink;

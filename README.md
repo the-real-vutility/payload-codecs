@@ -29,6 +29,13 @@ Use these codecs for implementing a decode uplink Lambda function in AWS.
 | `pulsedrop direct` | [index.js](pulsedrop_direct/aws-iot-core/index.js) | [readme](pulsedrop_direct/aws-iot-core/readme.md)  | Decoding Lambda Function (AWS) | ✅ | ❌ | ❌
 | `voltdrop direct` | [index.js](voltdrop_direct/aws-iot-core/index.js) | [readme](voltdrop_direct/aws-iot-core/readme.md)  | Decoding Lambda Function (AWS) | ✅ | ❌ | ❌
 
+## Chirpstack V4 Codecs
+You can use the Standard Codecs as-is for Chirpstack V4.
+- Create a device profile in Chirpstack for the particular device (Hotdrop, Pulsedrop or Voltdrop).
+- Copy the index.js file for that device.
+- Under `Codec` in the device profile, select `JavaScript functions` and paste the file into the `Codec functions` input box.
+- Click `Submit` at the bottom of the page.
+
 ### Development Notes
  - Framework: node.js
  - Testing Framework: [jest](https://jestjs.io/)
