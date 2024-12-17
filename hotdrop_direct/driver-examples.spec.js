@@ -1,4 +1,4 @@
-var driver = require("./index.js");
+const driver = require("./index.js");
 const examples = require("./examples.json");
 
 /*..............
