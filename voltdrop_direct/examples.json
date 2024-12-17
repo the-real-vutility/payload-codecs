@@ -464,7 +464,7 @@
     },
     "output": {
       "data": {
-        "activeEnergyAccumulation": -9223372030000000,
+        "activeEnergyAccumulation": -882362096067584,
         "averagePowerFactor": 222.109375
       },
       "errors": [],
@@ -481,7 +481,7 @@
     },
     "output": {
       "data": {
-        "activeEnergyAccumulation": -4500000000000123,
+        "activeEnergyAccumulation": -2483861301637499,
         "averagePowerFactor": 125.9453125
       },
       "errors": [],
@@ -490,7 +490,7 @@
   },
   {
     "type": "uplink",
-    "description": "Apparent Energy Accumulation Confirmed Random",
+    "description": "Apparent Energy Accumulation Confirmed Random Positive",
     "input": {
       "bytes": [44, 48, 198, 104, 201, 239, 219, 154, 45, 209, 166],
       "fPort": 3,
@@ -507,7 +507,7 @@
   },
   {
     "type": "uplink",
-    "description": "Apparent Energy Accumulation Unconfirmed Random",
+    "description": "Apparent Energy Accumulation Unconfirmed Random Positive",
     "input": {
       "bytes": [45, 204, 198, 219, 214, 47, 52, 36, 136, 106, 64],
       "fPort": 3,
@@ -524,27 +524,66 @@
   },
   {
     "type": "uplink",
-    "description": "Error: Short packet length",
+    "description": "Error: Empty Payload",
+    "input": {
+      "bytes": [],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": ["Empty payload"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Short packet length 1",
     "input": {
       "bytes": [40, 0, 0, 0, 0, 0, 0, 0, 0],
       "fPort": 3,
       "recvTime": "2023-05-02T20:00:00.000+00:00"
     },
     "output": {
-      "errors": ["Payload length must be 11 bytes"],
+      "errors": ["Invalid payload length for data type"],
       "warnings": []
     }
   },
   {
     "type": "uplink",
-    "description": "Error: Long packet length",
+    "description": "Error: Short packet length 2",
+    "input": {
+      "bytes": [38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": ["Invalid payload length for data type"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Long packet length 1",
     "input": {
       "bytes": [40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "fPort": 3,
       "recvTime": "2023-05-02T20:00:00.000+00:00"
     },
     "output": {
-      "errors": ["Payload length must be 11 bytes"],
+      "errors": ["Invalid payload length for data type"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: Long packet length 2",
+    "input": {
+      "bytes": [38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "errors": ["Invalid payload length for data type"],
       "warnings": []
     }
   },
