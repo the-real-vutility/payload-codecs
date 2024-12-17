@@ -69,7 +69,9 @@ function decodeUplink(input) {
   var temperatureCelsius = temperatureCelsiusFactor * temperatureScalar - 40;
 
   if (capacitorVoltage < 2.5) {
-    result.warnings.push("Low capacitor voltage indicates depleted battery. System may cease operation soon.");
+    result.warnings.push(
+      "Low capacitor voltage indicates depleted battery. System may cease operation soon."
+    );
   }
 
   result.data = {
@@ -188,6 +190,3 @@ function encodeDownlink(input) {
   delete result.bytes;
   return result;
 }
-
-exports.decodeUplink = decodeUplink;
-exports.encodeDownlink = encodeDownlink;

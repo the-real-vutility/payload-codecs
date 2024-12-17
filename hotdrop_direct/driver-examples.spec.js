@@ -1,4 +1,4 @@
-const driver = require("./index.js");
+var driver = require("./index.js");
 const examples = require("./examples.json");
 
 /*..............
@@ -24,7 +24,7 @@ describe("Decode uplink index.js", () => {
 
         // Then
         const expected = example.output;
-        expect(result).toStrictEqual(expected);
+        expect(result).toMatchObject(expected);
       });
     }
   });

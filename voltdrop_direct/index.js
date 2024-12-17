@@ -469,7 +469,3 @@ function decodeDownlink(input) {
   }
   return result;
 }
-
-exports.decodeUplink = decodeUplink;
-exports.encodeDownlink = encodeDownlink;
-exports.decodeDownlink = decodeDownlink;

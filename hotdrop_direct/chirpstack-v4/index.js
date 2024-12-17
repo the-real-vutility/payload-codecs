@@ -19,13 +19,17 @@ function decodeUplink(input) {
 
   // Uplink payload must be 11 bytes long.
   if (raw.byteLength != 11) {
-    throw new Error("Uplink payload must be 11 bytes long. Are you using a HotDrop device?");
+    throw new Error(
+      "Uplink payload must be 11 bytes long. Are you using a HotDrop device?"
+    );
   }
 
   // Packet ID - 1 byte
   const packetId = raw[0];
   if (packetId !== 50) {
-    throw new Error("Uplink payload must begin with hex 50 byte. Is this a HotDrop Direct Device?");
+    throw new Error(
+      "Uplink payload must begin with hex 50 byte. Is this a HotDrop Direct Device?"
+    );
   }
 
   // Constant factors for formulas
@@ -119,10 +123,14 @@ function encodeDownlink(input) {
 
   if (typeof input.data.transmitIntervalSeconds !== "undefined") {
     if (input.data.transmitIntervalSeconds < 60) {
-      throw new Error("Invalid downlink: transmit interval cannot be less than 1 min");
+      throw new Error(
+        "Invalid downlink: transmit interval cannot be less than 1 min"
+      );
     }
     if (input.data.transmitIntervalSeconds > 1800) {
-      throw new Error("Invalid downlink: transmit interval cannot be greater than 30 min");
+      throw new Error(
+        "Invalid downlink: transmit interval cannot be greater than 30 min"
+      );
     }
     var downlink = Buffer.alloc(10);
     downlink.writeUInt16LE(0x0054, 0);
@@ -134,10 +142,14 @@ function encodeDownlink(input) {
 
   if (typeof input.data.measurementIntervalMs !== "undefined") {
     if (input.data.measurementIntervalMs < 200) {
-      throw new Error("Invalid downlink: measurement interval cannot be less than 200 ms");
+      throw new Error(
+        "Invalid downlink: measurement interval cannot be less than 200 ms"
+      );
     }
     if (input.data.measurementIntervalMs > 10000) {
-      throw new Error("Invalid downlink: measurement interval cannot be greater than 10000 ms");
+      throw new Error(
+        "Invalid downlink: measurement interval cannot be greater than 10000 ms"
+      );
     }
 
     var downlink = Buffer.alloc(10);
@@ -152,11 +164,15 @@ function encodeDownlink(input) {
     var lowPowerTolerance = 0.000001;
     // Have leniant lower tolerance due to floating point
     if (input.data.lowPowerThreshold + lowPowerTolerance < 2.1) {
-      throw new Error("Invalid downlink: low power threshold cannot be less than 2.1 v");
+      throw new Error(
+        "Invalid downlink: low power threshold cannot be less than 2.1 v"
+      );
     }
     // Have leniant upper tolerance due to floating point
     if (input.data.lowPowerThreshold - lowPowerTolerance > 3.9) {
-      throw new Error("Invalid downlink: low power threshold cannot be greater than 3.9 v");
+      throw new Error(
+        "Invalid downlink: low power threshold cannot be greater than 3.9 v"
+      );
     }
 
     var downlink = Buffer.alloc(10);
@@ -180,6 +196,3 @@ function encodeDownlink(input) {
 
   throw new Error("Invalid downlink: invalid downlink parameter name");
 }
-
-exports.decodeUplink = decodeUplink;
-exports.encodeDownlink = encodeDownlink;

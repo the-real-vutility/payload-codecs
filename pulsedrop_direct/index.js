@@ -52,14 +52,16 @@ function decodeUplink(input) {
 
   // Pulse Count - 4 bytes
   // 32-bit unsigned integer in network byte order (MSB/BE)
-  const pulseCount = raw.readUInt32BE(3)
+  const pulseCount = raw.readUInt32BE(3);
 
   // Calculated fields
   const capacitorVoltage = capacitorVoltageFactor * capacitorVoltageScalar;
   const temperatureCelsius = temperatureCelsiusFactor * temperatureScalar - 40;
 
   if (capacitorVoltage < 2.5) {
-    result.warnings.push("Low capacitor voltage indicates depleted battery. System may cease operation soon.");
+    result.warnings.push(
+      "Low capacitor voltage indicates depleted battery. System may cease operation soon."
+    );
   }
 
   result.data = {
@@ -230,7 +232,3 @@ function decodeDownlink(input) {
   }
   return result;
 }
-
-exports.decodeUplink = decodeUplink;
-exports.encodeDownlink = encodeDownlink;
-exports.decodeDownlink = decodeDownlink;

@@ -28,7 +28,7 @@ function decodeUplink(input) {
   const temperatureCelsiusFactor = 120.0 / 255.0;
 
   let result = {
-    data: {}
+    data: {},
   };
   const raw = Buffer.from(input.bytes);
 
@@ -208,7 +208,7 @@ function decodeUplink(input) {
  */
 function encodeDownlink(input) {
   let result = {
-    bytes: []
+    bytes: [],
   };
 
   let definedDownlinkVars = 0;
@@ -311,6 +311,3 @@ function encodeDownlink(input) {
 
   throw new Error("Invalid downlink: invalid downlink parameter name");
 }
-
-exports.decodeUplink = decodeUplink;
-exports.encodeDownlink = encodeDownlink;

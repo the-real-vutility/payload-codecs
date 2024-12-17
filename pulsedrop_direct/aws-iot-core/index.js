@@ -116,5 +116,3 @@ exports.handler = async function (event, context) {
     return result;
   }
 };
-
-exports.decodeUplink = decodeUplink;

@@ -12,7 +12,7 @@
  */
 function decodeUplink(input) {
   let result = {
-    data: {}
+    data: {},
   };
   const raw = Buffer.from(input.bytes);
 
@@ -43,7 +43,7 @@ function decodeUplink(input) {
 
   // Pulse Count - 4 bytes
   // 32-bit unsigned integer in network byte order (MSB/BE)
-  const pulseCount = raw.readUInt32BE(3)
+  const pulseCount = raw.readUInt32BE(3);
 
   // Calculated fields
   const capacitorVoltage = capacitorVoltageFactor * capacitorVoltageScalar;
@@ -72,7 +72,7 @@ function decodeUplink(input) {
  */
 function encodeDownlink(input) {
   let result = {
-    bytes: []
+    bytes: [],
   };
 
   let definedDownlinkVars = 0;
@@ -119,7 +119,3 @@ function encodeDownlink(input) {
 
   throw new Error("Invalid downlink: invalid downlink parameter name");
 }
-
-exports.decodeUplink = decodeUplink;
-exports.encodeDownlink = encodeDownlink;
-
