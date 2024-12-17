@@ -40,7 +40,7 @@ The diagnostic packets are sent under specific conditions and detailed descripti
 | `capacitorVoltage` | The capacitor voltage at time of transmit. | V |
 | `currentL1` | Average RMS amps on Phase A (L1) | A |
 | `currentL2` | Average RMS amps on Phase B (L2) | A |
-| `currentL3` | Average RMS amps on Phase B (L3) | A |
+| `currentL3` | Average RMS amps on Phase C (L3) | A |
 | `maxCurrentL1` | Maximum amps on Phase A (L1) | A |
 | `maxCurrentL2` | Maximum amps on Phase B (L2) | A |
 | `maxCurrentL3` | Maximum amps on Phase C (L3) | A |
@@ -73,7 +73,7 @@ The diagnostic packets are sent under specific conditions and detailed descripti
 | --- | --- | :---: |
 | `currentL1` | Average RMS amps on Phase A (L1). | A |
 | `currentL2` | Average RMS amps on Phase B (L2). | A |
-| `currentL3` | Average RMS amps on Phase B (L3). | A |
+| `currentL3` | Average RMS amps on Phase C (L3). | A |
 | `maxCurrentL1` | Maximum amps on Phase A (L1) since last transmit. | A |
 | `maxCurrentL2` | Maximum amps on Phase B (L2) since last transmit. | A |
 | `maxCurrentL3` | Maximum amps on Phase C (L3) since last transmit. | A |

@@ -30,7 +30,7 @@ The diagnostic packets are sent under specific conditions and detailed descripti
 | `capacitorVoltage` | The capacitor voltage at time of transmit. | V |
 | `currentL1` | Average RMS amps on Phase A (L1) since last transmit. | A |
 | `currentL2` | Average RMS amps on Phase B (L2) since last transmit. | A |
-| `currentL3` | Average RMS amps on Phase B (L3) since last transmit. | A |
+| `currentL3` | Average RMS amps on Phase C (L3) since last transmit. | A |
 | `maxCurrentL1` | Maximum amps on Phase A (L1) since last transmit. | A |
 | `maxCurrentL2` | Maximum amps on Phase B (L2) since last transmit. | A |
 | `maxCurrentL3` | Maximum amps on Phase C (L3) since last transmit. | A |
@@ -54,8 +54,8 @@ The diagnostic packets are sent under specific conditions and detailed descripti
 | `voltageL2` | Average RMS voltage on Phase B (L2) since last transmit| V |
 | `voltageL3` | Average RMS voltage on Phase C (L3) since last transmit| V |
 | `powerFactorL1` | Percentage IEC power factor of Phase A (L1) | % |
-| `powerFactorL2` | Percentage IEC power factor of Phase A (L1) | % |
-| `powerFactorL3` | Percentage IEC power factor of Phase A (L1) | % |
+| `powerFactorL2` | Percentage IEC power factor of Phase B (L2) | % |
+| `powerFactorL3` | Percentage IEC power factor of Phase C (L3) | % |
 | `capacitorVoltage` | The capacitor voltage at time of transmit. | V |
 
 ### Phase Amperage and Max Amperage (Packet #41)
@@ -63,7 +63,7 @@ The diagnostic packets are sent under specific conditions and detailed descripti
 | --- | --- | :---: |
 | `currentL1` | Average RMS amps on Phase A (L1) since last transmit. | A |
 | `currentL2` | Average RMS amps on Phase B (L2) since last transmit. | A |
-| `currentL3` | Average RMS amps on Phase B (L3) since last transmit. | A |
+| `currentL3` | Average RMS amps on Phase C (L3) since last transmit. | A |
 | `maxCurrentL1` | Maximum amps on Phase A (L1) since last transmit. | A |
 | `maxCurrentL2` | Maximum amps on Phase B (L2) since last transmit. | A |
 | `maxCurrentL3` | Maximum amps on Phase C (L3) since last transmit. | A |
