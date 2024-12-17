@@ -34,6 +34,7 @@ Use these codecs for implementing a codec in Chirpstack V4.
 | Device | Codec | Codec Info | Description | Uplink Decode | Downlink Encode | Downlink Decode
 | --- | --- | --- | --- | :---: | :---: | :---: |
 | `hotdrop direct` | [index.js](hotdrop_direct/chirpstack-v4/index.js) | [readme](hotdrop_direct/chirpstack-v4/readme.md)  | Chirpstack V4 Codec | ✅ | ✅ | ❌
+| `pulsedrop direct` | [index.js](pulsedrop_direct/chirpstack-v4/index.js) | [readme](pulsedrop_direct/chirpstack-v4/readme.md)  | Chirpstack V4 Codec | ✅ | ✅ | ❌
 | `voltdrop direct` | [index.js](voltdrop_direct/chirpstack-v4/index.js) | [readme](voltdrop_direct/chirpstack-v4/readme.md)  | Chirpstack V4 Codec | ✅ | ✅ | ❌
 
 ### Development Notes
