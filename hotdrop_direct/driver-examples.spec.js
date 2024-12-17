@@ -24,7 +24,7 @@ describe("Decode uplink index.js", () => {
 
         // Then
         const expected = example.output;
-        expect(result).toMatchObject(expected);
+        expect(result).toStrictEqual(expected);
       });
     }
   });
