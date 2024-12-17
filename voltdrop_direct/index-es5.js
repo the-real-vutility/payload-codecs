@@ -298,6 +298,7 @@ function decodeUplink(input) {
         "Reader Overvoltage",
         "Reader Not Calibrated",
         "Phase Sequence Error",
+        "Transmit Duty-Cycle Restricted",
       ];
       var rawErrorConditions =
         ((rawBytesArray[1] << 8) + rawBytesArray[2]) >>> 0;
