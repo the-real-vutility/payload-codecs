@@ -256,6 +256,7 @@ function decodeUplink(input) {
         "Reader Overvoltage",
         "Reader Not Calibrated",
         "Phase Sequence Error",
+        "Transmit Duty-Cycle Restricted",
       ];
       let rawErrorConditions = raw.readUInt16BE(1);
       let systemErrorConditions = [];

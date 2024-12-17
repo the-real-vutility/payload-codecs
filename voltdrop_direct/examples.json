@@ -873,7 +873,8 @@
           "Reader NACK",
           "Reader Overvoltage",
           "Reader Not Calibrated",
-          "Phase Sequence Error"
+          "Phase Sequence Error",
+          "Transmit Duty-Cycle Restricted"
         ],
         "registerID": "0xFFFF"
       },
