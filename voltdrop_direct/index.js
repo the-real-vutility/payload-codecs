@@ -28,7 +28,7 @@ function decodeUplink(input) {
   };
 
   // Constant factors for formulas
-  const phaseAngleFactor = 360.0 / 256.0; // Exclusive of 360°, use 256 in division
+  const phaseAngleFactor = 360.0 / 255.0;
   const capacitorVoltageFactor = 5.0 / 255.0;
   const temperatureCelsiusFactor = 120.0 / 255.0;
 
