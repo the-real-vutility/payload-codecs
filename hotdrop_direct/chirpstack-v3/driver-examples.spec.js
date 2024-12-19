@@ -5,7 +5,7 @@ const examples = require("./examples.json");
 Test suites
 ..............*/
 
-describe("Voltdrop chirpstack-v3 uplink", () => {
+describe("Hotdrop chirpstack-v3 uplink", () => {
   examples.forEach((example) => {
     if (example.type === "uplink") {
       if (example.expectException !== undefined && example.expectException) {
@@ -30,7 +30,7 @@ describe("Voltdrop chirpstack-v3 uplink", () => {
   });
 });
 
-describe("Voltdrop chirpstack-v3 Encode downlink", () => {
+describe("Hotdrop chirpstack-v3 Encode downlink", () => {
   examples.forEach((example) => {
     if (example.type === "downlink-encode") {
 
