@@ -1,0 +1,713 @@
+[
+  {
+    "type": "uplink",
+    "description": "standard uplink, empty",
+    "input": {
+      "bytes": [
+        28,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "pulseCount": 0,
+        "capacitorVoltage": 0,
+        "temperatureCelsius": -40
+      },
+      "errors": [],
+      "warnings": [
+        "Low capacitor voltage indicates depleted battery. System may cease operation soon."
+      ]
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "standard uplink, whole numbers",
+    "input": {
+      "bytes": [
+        28,
+        255,
+        17,
+        0,
+        0,
+        13,
+        232,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "pulseCount": 3560,
+        "capacitorVoltage": 5,
+        "temperatureCelsius": -32
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "standard uplink, fractional numbers",
+    "input": {
+      "bytes": [
+        28,
+        197,
+        125,
+        0,
+        0,
+        13,
+        232,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "pulseCount": 3560,
+        "capacitorVoltage": 3.8627450980392157,
+        "temperatureCelsius": 18.823529411764703
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "max uplink",
+    "input": {
+      "bytes": [
+        28,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "pulseCount": 4294967295,
+        "capacitorVoltage": 5,
+        "temperatureCelsius": 80
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: uplink length greater than 11 bytes",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        28,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "errorMessage": "Payload length must be 11 bytes"
+  },
+  {
+    "type": "uplink",
+    "description": "Error: uplink length less than 11 bytes",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        28,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "errorMessage": "Payload length must be 11 bytes"
+  },
+  {
+    "type": "uplink",
+    "description": "Error: packet type is not 50",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        15,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "errorMessage": "Payload packet ID is not equal to 28"
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink transmit interval (1 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 60
+      }
+    },
+    "output": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        112,
+        66,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink transmit interval (2 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 120
+      }
+    },
+    "output": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        240,
+        66,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink transmit interval (5 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 300
+      }
+    },
+    "output": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        150,
+        67,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink transmit interval (15 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 900
+      }
+    },
+    "output": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        97,
+        68,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "downlink transmit interval (30 min)",
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 1800
+      }
+    },
+    "output": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        225,
+        68,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: downlink transmit interval less than 1 min",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": -60
+      }
+    },
+    "errorMessage": "Invalid downlink: transmit interval cannot be less than 1 min"
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: downlink transmit interval greater than 30 min",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 1801
+      }
+    },
+    "errorMessage": "Invalid downlink: transmit interval cannot be greater than 30 min"
+  },
+  {
+    "type": "downlink-encode",
+    "description": "factory reset",
+    "input": {
+      "data": {
+        "factoryReset": true
+      }
+    },
+    "output": {
+      "bytes": [
+        70,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 3,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: factory reset is false",
+    "expectException": true,
+    "input": {
+      "data": {
+        "factoryReset": false
+      }
+    },
+    "errorMessage": "Invalid downlink: valid factoryReset value is true"
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: invalid data field",
+    "expectException": true,
+    "input": {
+      "data": {
+        "invalid": 112
+      }
+    },
+    "errorMessage": "Invalid downlink: invalid downlink parameter name"
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: More than one downlink defined",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 60,
+        "factoryReset": true
+      }
+    },
+    "errorMessage": "Invalid downlink: More than one downlink type defined"
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink transmit interval (1 min) [default configuration]",
+    "input": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        112,
+        66,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 60
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink transmit interval (2 min)",
+    "input": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        240,
+        66,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 120
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink transmit interval (5 min)",
+    "input": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        150,
+        67,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 300
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink transmit interval (15 min)",
+    "input": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        97,
+        68,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 900
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "downlink transmit interval (30 min)",
+    "input": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        225,
+        68,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 1800
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Warning: downlink transmit interval reserved bytes not 0",
+    "input": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        225,
+        68,
+        0,
+        1,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "transmitIntervalSeconds": 1800
+      },
+      "errors": [],
+      "warnings": [
+        "Warning: Byte index 6-9 are not 0"
+      ]
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink transmit interval cannot be less than 1 min",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        84,
+        0,
+        0,
+        0,
+        112,
+        194,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "errorMessage": "Invalid downlink: transmit interval cannot be less than 1 min"
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink transmit interval greater than 30 m",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        84,
+        0,
+        0,
+        32,
+        225,
+        68,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "errorMessage": "Invalid downlink: transmit interval cannot be greater than 30 min"
+  },
+  {
+    "type": "downlink-decode",
+    "description": "factory reset",
+    "input": {
+      "bytes": [
+        70,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "factoryReset": true
+      },
+      "errors": [],
+      "warnings": []
+    }
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: factory reset reserved bytes not 0",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        70,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "errorMessage": "Invalid downlink: Factory reset reserved bytes are not equal to 0"
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink not 10 bytes",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        30,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "errorMessage": "Invalid downlink: unknown downlink type"
+  },
+  {
+    "type": "downlink-decode",
+    "description": "Error: downlink not 10 bytes",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fPort": 2,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "errorMessage": "Invalid downlink: downlink must be 10 bytes"
+  },
+  {
+    "type": "downlink-encode",
+    "description": "Error: transmit interval not one of set values",
+    "expectException": true,
+    "input": {
+      "data": {
+        "transmitIntervalSeconds": 153
+      }
+    },
+    "errorMessage": "Invalid downlink: transmit interval is not 1 min, 2 mins, 5 mins, 15 mins or 30 mins"
+  }
+]

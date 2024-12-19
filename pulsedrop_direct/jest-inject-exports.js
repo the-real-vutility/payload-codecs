@@ -17,6 +17,12 @@ module.exports = {
     if (functionNames.find((value) => value === "encodeDownlink")) {
       exports += "exports.encodeDownlink = encodeDownlink;\n";
     }
+    if (functionNames.find((value) => value === "Decode")) {
+      exports += "exports.Decode = Decode;\n";
+    }
+    if (functionNames.find((value) => value === "Encode")) {
+      exports += "exports.Encode = Encode;\n";
+    }
     const injectedCode = `
     ${sourceText}
     ${exports}
