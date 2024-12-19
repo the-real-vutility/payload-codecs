@@ -29,6 +29,16 @@ Use these codecs for implementing a decode uplink Lambda function in AWS.
 | `pulsedrop direct` | [index.js](pulsedrop_direct/aws-iot-core/index.js) | [readme](pulsedrop_direct/aws-iot-core/readme.md)  | Decoding Lambda Function (AWS) | ✅ | ❌ | ❌
 | `voltdrop direct` | [index.js](voltdrop_direct/aws-iot-core/index.js) | [readme](voltdrop_direct/aws-iot-core/readme.md)  | Decoding Lambda Function (AWS) | ✅ | ❌ | ❌
 
+## Chirpstack V3 Codecs
+Use these codecs for implementing a decode uplink and downlink encode codec in Chirpstack version 3.
+| Device | Codec | Codec Info | Description | Uplink Decode | Downlink Encode | Downlink Decode
+| --- | --- | --- | --- | :---: | :---: | :---: |
+| `hotdrop direct` | [index.js](hotdrop_direct/chirpstack-v3/index.js) | [readme](hotdrop_direct/chirpstack-v3/readme.md)  | Chirpstack v3 Compatible HotDrop Direct Codec | ✅ | ✅* | ❌
+| `pulsedrop direct` | [index.js](pulsedrop_direct/chirpstack-v3/index.js) | [readme](pulsedrop_direct/chirpstack-v3/readme.md)  | Chirpstack v3 Compatible PulseDrop Direct Codec | ✅ | ✅* | ❌
+| `voltdrop direct` | [index.js](voltdrop_direct/chirpstack-v3/index.js) | [readme](voltdrop_direct/chirpstack-v3/readme.md)  | Chirpstack v3 Compatible VoltDrop Direct Codec | ✅ | ✅* | ❌
+
+*\*Limited options for encoded downlinks.*
+
 ## Chirpstack V4 Codecs
 You can use the Standard Codecs as-is for Chirpstack V4.
 - Create a device profile in Chirpstack for the particular device (Hotdrop, Pulsedrop or Voltdrop).
