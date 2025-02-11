@@ -12,6 +12,6 @@ Once again, please ensure that only Vutility Pulsedrop are utilizing this device
 | Function | Available | Notes |
 | --- | --- | --- |
 | `Decode`| ✅ | Equivalent to `decodeUplink`|
-| `Encode`| ✅ | Equivalent to `encodeUplink`. Only some downlinks are supported. Check the extended info for more details. |
+| `Encode`| ✅ | Equivalent to `encodeDownlink`. Only some downlinks are supported. Check the extended info for more details. |
 
 For more info on these functions please check the [ES5 readme](../index-es5-readme.md).

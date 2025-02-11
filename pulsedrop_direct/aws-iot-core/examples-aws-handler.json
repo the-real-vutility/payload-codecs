@@ -65,5 +65,47 @@
       "temperatureCelsius": -40,
       "status": 200
     }
+  },
+  {
+    "type": "aws-uplink",
+    "description": "Error: no response from meter",
+    "input": {
+      "PayloadData": "HP8RAAAN6AAAAAE=",
+      "WirelessDeviceId": "57728ff8-5d1d-4130-9de2-f004d8722bc2",
+      "WirelessMetadata": {
+        "LoRaWAN": {
+          "DataRate": 0,
+          "DevEui": "aaaa1111bbbb2222",
+          "FPort": 2,
+          "Frequency": 867900000,
+          "Timestamp": "2020-12-07T14:41:48Z"
+        }
+      }
+    },
+    "output": {
+      "errorMessage": "No response from meter",
+      "status": 500
+    }
+  },
+  {
+    "type": "aws-uplink",
+    "description": "Error: invalid response from meter",
+    "input": {
+      "PayloadData": "HP8RAAAN6AAAAAI=",
+      "WirelessDeviceId": "57728ff8-5d1d-4130-9de2-f004d8722bc2",
+      "WirelessMetadata": {
+        "LoRaWAN": {
+          "DataRate": 0,
+          "DevEui": "aaaa1111bbbb2222",
+          "FPort": 2,
+          "Frequency": 867900000,
+          "Timestamp": "2020-12-07T14:41:48Z"
+        }
+      }
+    },
+    "output": {
+      "errorMessage": "Invalid response from meter",
+      "status": 500
+    }
   }
 ]
