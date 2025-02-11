@@ -191,6 +191,7 @@
   {
     "type": "uplink",
     "description": "Error: no response from meter",
+    "expectException": true,
     "input": {
       "bytes": [
         28,
@@ -213,6 +214,7 @@
   {
     "type": "uplink",
     "description": "Error: invalid response from meter",
+    "expectException": true,
     "input": {
       "bytes": [
         28,

@@ -83,7 +83,7 @@
       }
     },
     "output": {
-      "errorMessage": "No response from meter",
+      "errorMessage": "Error decoding:No response from meter",
       "status": 500
     }
   },
@@ -104,7 +104,7 @@
       }
     },
     "output": {
-      "errorMessage": "Invalid response from meter",
+      "errorMessage": "Error decoding:Invalid response from meter",
       "status": 500
     }
   }
