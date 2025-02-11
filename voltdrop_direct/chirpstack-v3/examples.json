@@ -1,6 +1,75 @@
 [
   {
     "type": "chirpstack-v3-uplink",
+    "description": "Consolidated Voltage, Phase Angle, Amperage, and Max Amperage Zeroed",
+    "input": [
+      38,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "output": {
+        "voltageL1": 0,
+        "voltageL2": 0,
+        "voltageL3": 0,
+        "phaseAngleL1": 0,
+        "phaseAngleL2": 0,
+        "phaseAngleL3": 0,
+        "capacitorVoltage": 0,
+        "currentL1": 0,
+        "currentL2": 0,
+        "currentL3": 0,
+        "maxCurrentL1": 0,
+        "maxCurrentL2": 0,
+        "maxCurrentL3": 0,
+        "temperatureCelsius": -40
+    }
+  },
+  {
+    "type": "chirpstack-v3-uplink",
+    "description": "Phase Voltage and Phase Angle Zeroed",
+    "input": [
+      39,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "output": {
+        "voltageL1": 0,
+        "voltageL2": 0,
+        "voltageL3": 0,
+        "phaseAngleL1": 0,
+        "phaseAngleL2": 0,
+        "phaseAngleL3": 0,
+        "capacitorVoltage": 0
+    }
+  },
+  {
+    "type": "chirpstack-v3-uplink",
     "description": "Phase Voltage and Power Factor Zeroed",
     "input": [
       40,
@@ -137,6 +206,75 @@
   },
   {
     "type": "chirpstack-v3-uplink",
+    "description": "Consolidated Voltage, Phase Angle, Amperage, and Max Amperage All Ones",
+    "input": [
+      38,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255
+    ],
+    "output": {
+        "voltageL1": 1023.984375,
+        "voltageL2": 1023.984375,
+        "voltageL3": 1023.984375,
+        "phaseAngleL1": 360.0,
+        "phaseAngleL2": 360.0,
+        "phaseAngleL3": 360.0,
+        "capacitorVoltage": 5,
+        "currentL1": 4095.9375,
+        "currentL2": 4095.9375,
+        "currentL3": 4095.9375,
+        "maxCurrentL1": 36735.439453125,
+        "maxCurrentL2": 36735.439453125,
+        "maxCurrentL3": 36735.439453125,
+        "temperatureCelsius": 80
+    }
+  },
+  {
+    "type": "chirpstack-v3-uplink",
+    "description": "Phase Voltage and Phase Angle All Ones",
+    "input": [
+      39,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255
+    ],
+    "output": {
+        "voltageL1": 1023.984375,
+        "voltageL2": 1023.984375,
+        "voltageL3": 1023.984375,
+        "phaseAngleL1": 360.0,
+        "phaseAngleL2": 360.0,
+        "phaseAngleL3": 360.0,
+        "capacitorVoltage": 5
+    }
+  },
+  {
+    "type": "chirpstack-v3-uplink",
     "description": "Phase Voltage and Power Factor All Ones",
     "input": [
       40,
@@ -204,7 +342,7 @@
       255
     ],
     "output": {
-      "activeEnergyAccumulation": 9007199254740991,
+      "activeEnergyAccumulation": -1,
       "averagePowerFactor": -0.0078125
     }
   },
@@ -225,7 +363,7 @@
       255
     ],
     "output": {
-      "activeEnergyAccumulation": 9007199254740991,
+      "activeEnergyAccumulation": -1,
       "averagePowerFactor": -0.0078125
     }
   },
@@ -269,6 +407,75 @@
     "output": {
       "apparentEnergyAccumulation": 9007199254740991,
       "averagePowerFactor": -0.0078125
+    }
+  },
+  {
+    "type": "chirpstack-v3-uplink",
+    "description": "Consolidated Voltage, Phase Angle, Amperage, and Max Amperage Random",
+    "input": [
+      38,
+      79,
+      36,
+      145,
+      31,
+      235,
+      128,
+      125,
+      236,
+      38,
+      133,
+      226,
+      76,
+      114,
+      175,
+      88,
+      214,
+      147,
+      74,
+      242,
+      159
+    ],
+    "output": {
+        "voltageL1": 316.5625,
+        "voltageL2": 580.484375,
+        "voltageL3": 942,
+        "phaseAngleL1": 176.47058823529412,
+        "phaseAngleL2": 333.1764705882353,
+        "phaseAngleL3": 53.64705882352941,
+        "capacitorVoltage": 2.60784313725490196078,
+        "currentL1": 3620.75,
+        "currentL2": 1834.9375,
+        "currentL3": 1421.375,
+        "maxCurrentL1": 20253.5703125,
+        "maxCurrentL2": 6078.23046875,
+        "maxCurrentL3": 12170.5234375,
+        "temperatureCelsius": 34.82352941176471
+    }
+  },
+  {
+    "type": "chirpstack-v3-uplink",
+    "description": "Phase Voltage and Phase Angle Random",
+    "input": [
+      39,
+      79,
+      36,
+      145,
+      31,
+      235,
+      128,
+      125,
+      236,
+      38,
+      133
+    ],
+    "output": {
+        "voltageL1": 316.5625,
+        "voltageL2": 580.484375,
+        "voltageL3": 942,
+        "phaseAngleL1": 176.47058823529412,
+        "phaseAngleL2": 333.1764705882353,
+        "phaseAngleL3": 53.64705882352941,
+        "capacitorVoltage": 2.60784313725490196078
     }
   },
   {
@@ -325,7 +532,7 @@
   },
   {
     "type": "chirpstack-v3-uplink",
-    "description": "Active Energy Accumulation Confirmed Random",
+    "description": "Active Energy Accumulation Confirmed Random Positive",
     "input": [
       42,
       74,
@@ -340,13 +547,13 @@
       14
     ],
     "output": {
-      "activeEnergyAccumulation": 1238163288152814,
-      "averagePowerFactor": 222.109375
+        "activeEnergyAccumulation": 1238163288152814,
+        "averagePowerFactor": 222.109375
     }
   },
   {
     "type": "chirpstack-v3-uplink",
-    "description": "Active Energy Accumulation Unconfirmed Random",
+    "description": "Active Energy Accumulation Unconfirmed Random Positive",
     "input": [
       43,
       96,
@@ -361,13 +568,55 @@
       249
     ],
     "output": {
-      "activeEnergyAccumulation": 288678521294911,
-      "averagePowerFactor": 125.9453125
+        "activeEnergyAccumulation": 288678521294911,
+        "averagePowerFactor": 125.9453125
     }
   },
   {
     "type": "chirpstack-v3-uplink",
-    "description": "Apparent Energy Accumulation Confirmed Random",
+    "description": "Active Energy Accumulation Confirmed Random Negative",
+    "input": [
+      42,
+      255,
+      252,
+      221,
+      127,
+      16,
+      179,
+      92,
+      0,
+      111,
+      14
+    ],
+    "output": {
+        "activeEnergyAccumulation": -882362096067584,
+        "averagePowerFactor": 222.109375
+    }
+  },
+  {
+    "type": "chirpstack-v3-uplink",
+    "description": "Active Energy Accumulation Unconfirmed Random Negative",
+    "input": [
+      43,
+      255,
+      247,
+      44,
+      240,
+      249,
+      113,
+      206,
+      133,
+      62,
+      249
+    ],
+    "output": {
+        "activeEnergyAccumulation": -2483861301637499,
+        "averagePowerFactor": 125.9453125
+    }
+  },
+  {
+    "type": "chirpstack-v3-uplink",
+    "description": "Apparent Energy Accumulation Confirmed Random Positive",
     "input": [
       44,
       48,
@@ -382,13 +631,13 @@
       166
     ],
     "output": {
-      "apparentEnergyAccumulation": 1804066382125613,
-      "averagePowerFactor": -92.703125
+        "apparentEnergyAccumulation": 1804066382125613,
+        "averagePowerFactor": -92.703125
     }
   },
   {
     "type": "chirpstack-v3-uplink",
-    "description": "Apparent Energy Accumulation Unconfirmed Random",
+    "description": "Apparent Energy Accumulation Unconfirmed Random Positive",
     "input": [
       45,
       204,
@@ -403,30 +652,57 @@
       64
     ],
     "output": {
-      "apparentEnergyAccumulation": 1930562821694600,
-      "averagePowerFactor": 212.5
+        "apparentEnergyAccumulation": 1930562821694600,
+        "averagePowerFactor": 212.5
     }
   },
   {
     "type": "chirpstack-v3-uplink",
-    "description": "Error: Short packet length",
+    "description": "Error: Empty Payload",
     "expectException": true,
     "input": [
-      40,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
     ],
-    "errorMessage": "Payload length must be 11 bytes"
+    "errorMessage": "Empty payload"
   },
   {
     "type": "chirpstack-v3-uplink",
-    "description": "Error: Long packet length",
+    "description": "Error: Short packet length 1",
+    "expectException": true,
+    "input": [
+      40,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "errorMessage": "Invalid payload length for data type"
+  },
+  {
+    "type": "chirpstack-v3-uplink",
+    "description": "Error: Short packet length 2",
+    "expectException": true,
+    "input": [
+      38,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "errorMessage": "Invalid payload length for data type"
+  },
+  {
+    "type": "chirpstack-v3-uplink",
+    "description": "Error: Long packet length 1",
     "expectException": true,
     "input": [
       40,
@@ -444,7 +720,39 @@
       0,
       0
     ],
-    "errorMessage": "Payload length must be 11 bytes"
+    "errorMessage": "Invalid payload length for data type"
+  },
+  {
+    "type": "chirpstack-v3-uplink",
+    "description": "Error: Long packet length 2",
+    "expectException": true,
+    "input": [
+      38,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "errorMessage": "Invalid payload length for data type"
   },
   {
     "type": "chirpstack-v3-uplink",
@@ -801,7 +1109,8 @@
         "Reader NACK",
         "Reader Overvoltage",
         "Reader Not Calibrated",
-        "Phase Sequence Error"
+        "Phase Sequence Error",
+        "Transmit Duty-Cycle Restricted"
       ],
       "registerID": "0xFFFF"
     }

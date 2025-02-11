@@ -9,7 +9,7 @@
         "LoRaWAN": {
           "DataRate": 0,
           "DevEui": "aaaa1111bbbb2222",
-          "FPort": 2,
+          "FPort": 3,
           "Frequency": 867900000,
           "Timestamp": "2020-12-07T14:41:48Z"
         }
@@ -36,14 +36,14 @@
         "LoRaWAN": {
           "DataRate": 0,
           "DevEui": "aaaa1111bbbb2222",
-          "FPort": 2,
+          "FPort": 3,
           "Frequency": 867900000,
           "Timestamp": "2020-12-07T14:41:48Z"
         }
       }
     },
     "output": {
-      "errorMessage": "Error decoding:Payload length must be 11 bytes",
+      "errorMessage": "Error decoding:Invalid payload length for data type",
       "status": 500
     }
   }

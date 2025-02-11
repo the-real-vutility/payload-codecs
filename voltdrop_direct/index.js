@@ -15,6 +15,8 @@
  */
 function decodeUplink(input) {
   const packetList = {
+    VD_DIRECT_CONSOLIDATED_VOLTAGE_AMPERAGE: 38,
+    VD_DIRECT_VOLTAGE_ANGLE: 39,
     VD_DIRECT_VOLTAGE_PF: 40,
     VD_DIRECT_AMPERAGE: 41,
     VD_DIRECT_ACT_ENERGY_CONF: 42,
@@ -26,6 +28,7 @@ function decodeUplink(input) {
   };
 
   // Constant factors for formulas
+  const phaseAngleFactor = 360.0 / 255.0;
   const capacitorVoltageFactor = 5.0 / 255.0;
   const temperatureCelsiusFactor = 120.0 / 255.0;
 
@@ -34,18 +37,92 @@ function decodeUplink(input) {
     errors: [],
     warnings: [],
   };
+
   const raw = Buffer.from(input.bytes);
 
-  // Uplink payload must be 11 bytes long.
-  if (raw.byteLength != 11) {
-    result.errors.push("Payload length must be 11 bytes");
+  // Packet must minimally contain an ID byte
+  if (raw.byteLength != 0) {
+    const packetId = raw[0];
+    switch (packetId) {
+      // The consolidated packet is larger than typical
+      case packetList.VD_DIRECT_CONSOLIDATED_VOLTAGE_AMPERAGE:
+        expectedLength = 21;
+        break;
+      default: // All other packets are currently 11 bytes long
+        expectedLength = 11;
+      break;
+    }
+
+    if (raw.byteLength != expectedLength) {
+      result.errors.push("Invalid payload length for data type");
+      delete result.data;
+      return result;
+    }
+ } else {
+    result.errors.push("Empty payload");
     delete result.data;
     return result;
-  }
+ }
 
   // Packet ID - 1 byte
   const packetId = raw[0];
   switch (packetId) {
+    case packetList.VD_DIRECT_CONSOLIDATED_VOLTAGE_AMPERAGE: {
+      let currentL1 = raw.readUInt16BE(11) / 16.0;
+      let currentL2 = raw.readUInt16BE(13) / 16.0;
+      let currentL3 = raw.readUInt16BE(15) / 16.0;
+      result.data = {
+        // Average Phase Voltages - 2 bytes each
+        // 16-bit unsigned integers in network byte order (MSB/BE) with 10 integer and 6 fractional bits
+        voltageL1: raw.readUInt16BE(1) / 64.0,
+        voltageL2: raw.readUInt16BE(3) / 64.0,
+        voltageL3: raw.readUInt16BE(5) / 64.0,
+        // Phase Angle Scalars - 1 byte each
+        // 8-bit unsigned integer representing the phase angle between voltage and current.
+        // (as if the integer range from 0-255 is scaled to between 0° and 358.59375°)
+        phaseAngleL1: raw[7] * phaseAngleFactor,
+        phaseAngleL2: raw[8] * phaseAngleFactor,
+        phaseAngleL3: raw[9] * phaseAngleFactor,
+        // Capacitor Voltage Scalar - 1 byte
+        // 8-bit unsigned integer representing the capacitor voltage.
+        // (as if the integer range from 0-255 is scaled to between 0.0V and 5.0V)
+        capacitorVoltage: raw[10] * capacitorVoltageFactor,
+        // Average Phase Current - 2 bytes each
+        // 16-bit unsigned integers in network byte order (MSB/BE) with 12 integer and 4 fractional bits
+        currentL1: currentL1,
+        currentL2: currentL2,
+        currentL3: currentL3,
+        // Maximum Phase Current - 1 byte each
+        // 8-bit unsigned integer with 3 integer and 5 fractional bits (expressed as percentage in addition to 100%)
+        maxCurrentL1: (raw[17] / 32.0 + 1.0) * currentL1,
+        maxCurrentL2: (raw[18] / 32.0 + 1.0) * currentL2,
+        maxCurrentL3: (raw[19] / 32.0 + 1.0) * currentL3,
+        // Temperature Scalar
+        // 8-bit unsigned integer representing the temperature.
+        // (as if the integer range from 0-255 is scaled to between -40C and 80C)
+        temperatureCelsius: raw[20] * temperatureCelsiusFactor - 40.0,
+      };
+      break;
+    }
+    case packetList.VD_DIRECT_VOLTAGE_ANGLE:
+      result.data = {
+        // Average Phase Voltages - 2 bytes each
+        // 16-bit unsigned integers in network byte order (MSB/BE) with 10 integer and 6 fractional bits
+        voltageL1: raw.readUInt16BE(1) / 64.0,
+        voltageL2: raw.readUInt16BE(3) / 64.0,
+        voltageL3: raw.readUInt16BE(5) / 64.0,
+        // Phase Angle Scalars - 1 byte each
+        // 8-bit unsigned integer representing the phase angle between voltage and current.
+        // (as if the integer range from 0-255 is scaled to between 0° and 358.59375°)
+        phaseAngleL1: raw[7] * phaseAngleFactor,
+        phaseAngleL2: raw[8] * phaseAngleFactor,
+        phaseAngleL3: raw[9] * phaseAngleFactor,
+        // Capacitor Voltage Scalar - 1 byte
+        // 8-bit unsigned integer representing the capacitor voltage.
+        // (as if the integer range from 0-255 is scaled to between 0.0V and 5.0V)
+        capacitorVoltage: raw[10] * capacitorVoltageFactor,
+      };
+      break;
     case packetList.VD_DIRECT_VOLTAGE_PF:
       result.data = {
         // Average Phase Voltages - 2 bytes each
@@ -63,7 +140,7 @@ function decodeUplink(input) {
         capacitorVoltage: raw[10] * capacitorVoltageFactor,
       };
       break;
-    case packetList.VD_DIRECT_AMPERAGE:
+    case packetList.VD_DIRECT_AMPERAGE: {
       let currentL1 = raw.readUInt16BE(1) / 16.0;
       let currentL2 = raw.readUInt16BE(3) / 16.0;
       let currentL3 = raw.readUInt16BE(5) / 16.0;
@@ -84,12 +161,13 @@ function decodeUplink(input) {
         temperatureCelsius: raw[10] * temperatureCelsiusFactor - 40.0,
       };
       break;
+    }
     case packetList.VD_DIRECT_ACT_ENERGY_CONF: // Intentional fall-through
     case packetList.VD_DIRECT_ACT_ENERGY_UNCONF:
       result.data = {
         // Total Forward Active Energy - 8 bytes
         // Sum of all phases active energy accumulated in Watt-Hours since last factory reset downlink.
-        // 64-bit unsigned integer in network byte order (MSB/BE)
+        // 64-bit signed integer in network byte order (MSB/BE)
         //
         // NOTE: Due to the limitations of Javascript and JSON this codec only uses 53 bits
         // (max of standard number type) This still gives an effective range of 102,821 years
@@ -97,7 +175,7 @@ function decodeUplink(input) {
         // Test and truncate the BigInt type into a normal number for JSON compatibility to the
         // ES5 version of the codec.
         activeEnergyAccumulation: Number(
-          BigInt.asUintN(53, raw.readBigUInt64BE(1))
+          BigInt.asIntN(53, raw.readBigInt64BE(1))
         ),
         // Average Power Factor over all Phases - 2 bytes
         // 16-bit signed integer in network byte order (MSB/BE) expressed as percentage with 8 integer and 7 fractional bits
@@ -181,6 +259,7 @@ function decodeUplink(input) {
         "Reader Overvoltage",
         "Reader Not Calibrated",
         "Phase Sequence Error",
+        "Transmit Duty-Cycle Restricted",
       ];
       let rawErrorConditions = raw.readUInt16BE(1);
       let systemErrorConditions = [];
