@@ -31,6 +31,8 @@ function Decode(fPort, bytes, variables) {
   // Constant factors for formulas
   var capacitorVoltageFactor = 5.0 / 255.0;
   var temperatureCelsiusFactor = 120.0 / 255.0;
+  var noResponseErrorFlag = 0x01;
+  var invalidResponseErrorFlag = 0x02;
 
   // Capacitor Voltage Scalar - 1 byte
   // 8-bit unsigned integer representing the capacitor voltage.
@@ -54,6 +56,15 @@ function Decode(fPort, bytes, variables) {
   // Calculated fields
   var capacitorVoltage = capacitorVoltageFactor * capacitorVoltageScalar;
   var temperatureCelsius = temperatureCelsiusFactor * temperatureScalar - 40;
+
+  // Digital AMI error flags
+  const errorFlags = rawBytesArray[10];
+  if (errorFlags & noResponseErrorFlag) {
+    throw new Error("No response from meter");
+  }
+  if (errorFlags & invalidResponseErrorFlag) {
+    throw new Error("Invalid response from meter");
+  }
 
   result.data = {
     pulseCount: pulseCount,

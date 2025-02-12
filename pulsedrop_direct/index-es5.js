@@ -44,6 +44,8 @@ function decodeUplink(input) {
   // Constant factors for formulas
   var capacitorVoltageFactor = 5.0 / 255.0;
   var temperatureCelsiusFactor = 120.0 / 255.0;
+  var noResponseErrorFlag = 0x01;
+  var invalidResponseErrorFlag = 0x02;
 
   // Capacitor Voltage Scalar - 1 byte
   // 8-bit unsigned integer representing the capacitor voltage.
@@ -71,6 +73,19 @@ function decodeUplink(input) {
   if (capacitorVoltage < 2.5) {
     result.warnings.push(
       "Low capacitor voltage indicates depleted battery. System may cease operation soon."
+    );
+  }
+
+  // Digital AMI error flags
+  const errorFlags = rawBytesArray[10];
+  if (errorFlags & noResponseErrorFlag) {
+    result.errors.push(
+      "No response from meter"
+    );
+  }
+  if (errorFlags & invalidResponseErrorFlag) {
+    result.errors.push(
+      "Invalid response from meter"
     );
   }
 

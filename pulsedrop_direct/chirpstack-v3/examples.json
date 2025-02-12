@@ -189,6 +189,52 @@
     "errorMessage": "Payload packet ID is not equal to 28"
   },
   {
+    "type": "uplink",
+    "description": "Error: no response from meter",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        28,
+        255,
+        17,
+        0,
+        0,
+        13,
+        232,
+        0,
+        0,
+        0,
+        1
+      ],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "errorMessage": "No response from meter"
+  },
+  {
+    "type": "uplink",
+    "description": "Error: invalid response from meter",
+    "expectException": true,
+    "input": {
+      "bytes": [
+        28,
+        255,
+        17,
+        0,
+        0,
+        13,
+        232,
+        0,
+        0,
+        0,
+        2
+      ],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "errorMessage": "Invalid response from meter"
+  },
+  {
     "type": "downlink-encode",
     "description": "downlink transmit interval (1 min)",
     "input": {

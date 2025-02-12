@@ -111,6 +111,42 @@
     }
   },
   {
+    "type": "uplink",
+    "description": "Error: no response from meter",
+    "input": {
+      "bytes": [28, 255, 17, 0, 0, 13, 232, 0, 0, 0, 1],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "pulseCount": 3560,
+        "capacitorVoltage": 5,
+        "temperatureCelsius": -32
+      },
+      "errors": ["No response from meter"],
+      "warnings": []
+    }
+  },
+  {
+    "type": "uplink",
+    "description": "Error: invalid response from meter",
+    "input": {
+      "bytes": [28, 255, 17, 0, 0, 13, 232, 0, 0, 0, 2],
+      "fPort": 3,
+      "recvTime": "2023-05-02T20:00:00.000+00:00"
+    },
+    "output": {
+      "data": {
+        "pulseCount": 3560,
+        "capacitorVoltage": 5,
+        "temperatureCelsius": -32
+      },
+      "errors": ["Invalid response from meter"],
+      "warnings": []
+    }
+  },
+  {
     "type": "downlink-encode",
     "description": "downlink transmit interval (1 min)",
     "input": {
