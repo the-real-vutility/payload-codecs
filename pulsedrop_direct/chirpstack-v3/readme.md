@@ -15,3 +15,5 @@ Once again, please ensure that only Vutility Pulsedrop are utilizing this device
 | `Encode`| ✅ | Equivalent to `encodeDownlink`. Only some downlinks are supported. Check the extended info for more details. |
 
 For more info on these functions please check the [ES5 readme](../index-es5-readme.md).
+
+**Note:** Unlike the ES5 version of the codec, Chirpstack V3 does not support error arrays in data. In the event of an issue there will only be a single error message returned.
