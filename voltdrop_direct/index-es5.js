@@ -6,7 +6,7 @@
 
 /**
  * @typedef {Object} DecodedUplink
- * @property {HotDropDirectData} data - The open JavaScript object representing the decoded uplink payload when no errors occurred
+ * @property {VoltDropDirectData} data - The open JavaScript object representing the decoded uplink payload when no errors occurred
  * @property {string[]} errors - A list of error messages while decoding the uplink payload
  * @property {string[]} warnings - A list of warning messages that do not prevent the driver from decoding the uplink payload
  */
@@ -55,7 +55,7 @@ function decodeUplink(input) {
         break;
       default: // All other packets are currently 11 bytes long
         expectedLength = 11;
-      break;
+        break;
     }
 
     if (rawBytesArray.length != expectedLength) {
@@ -63,18 +63,18 @@ function decodeUplink(input) {
       delete result.data;
       return result;
     }
- } else {
+  } else {
     result.errors.push("Empty payload");
     delete result.data;
     return result;
- }
+  }
 
   // Packet ID - 1 byte
   var packetId = rawBytesArray[0];
   switch (packetId) {
     case packetList.VD_DIRECT_CONSOLIDATED_VOLTAGE_AMPERAGE: {
       var currentL1 =
-      (((rawBytesArray[11] << 8) + rawBytesArray[12]) >>> 0) / 16.0;
+        (((rawBytesArray[11] << 8) + rawBytesArray[12]) >>> 0) / 16.0;
       var currentL2 =
         (((rawBytesArray[13] << 8) + rawBytesArray[14]) >>> 0) / 16.0;
       var currentL3 =
@@ -184,14 +184,14 @@ function decodeUplink(input) {
       // Voltdrop is reasonably capable of measuring.
       // Javascript cannot handle bit-shifts above 16 without truncation so they have been replaced by
       // equivalent multipliers. rawBytesArray[1] is above the 53-bit limit and intentionally ignored.
-      let activeEnergyAccumulation =
+      var activeEnergyAccumulation =
         ((rawBytesArray[2] & 0x1f) * Math.pow(2, 48) +
-        rawBytesArray[3] * Math.pow(2, 40) +
-        rawBytesArray[4] * Math.pow(2, 32) +
-        rawBytesArray[5] * Math.pow(2, 24) +
-        (rawBytesArray[6] << 16) +
-        (rawBytesArray[7] << 8) +
-        rawBytesArray[8]);
+          rawBytesArray[3] * Math.pow(2, 40) +
+          rawBytesArray[4] * Math.pow(2, 32) +
+          rawBytesArray[5] * Math.pow(2, 24) +
+          (rawBytesArray[6] << 16) +
+          (rawBytesArray[7] << 8) +
+          rawBytesArray[8]);
       // At this point the value is considered unsigned but may contain a 2's compliment negative value.
       // Check sign bit and subtract to make the floating-point representation negative if needed.
       if (activeEnergyAccumulation >= Math.pow(2, 52)) {
