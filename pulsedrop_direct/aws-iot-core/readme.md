@@ -8,7 +8,7 @@ Please follow this documentation by AWS to validate this prerequisite has been f
 - https://docs.aws.amazon.com/iot/latest/developerguide/connect-iot-lorawan-destination-rules.html
 - https://github.com/aws-samples/aws-iot-core-lorawan/tree/main/transform_binary_payload
 
-To use this file, copy the index.js file and paste it into your Lambda function. After publishing the Lambda function, it will then begin decoding data.
+To use this file, copy the [index.js](index.js) file and paste it into your Lambda function. After publishing the Lambda function, it will then begin decoding data.
 
 Once again, please ensure that only Vutility PulseDrop data is invoking this Lambda function.
 

@@ -29,8 +29,16 @@ Use these codecs for implementing a decode uplink Lambda function in AWS.
 | `pulsedrop direct` | [index.js](pulsedrop_direct/aws-iot-core/index.js) | [readme](pulsedrop_direct/aws-iot-core/readme.md)  | Decoding Lambda Function (AWS) | ✅ | ❌ | ❌
 | `voltdrop direct` | [index.js](voltdrop_direct/aws-iot-core/index.js) | [readme](voltdrop_direct/aws-iot-core/readme.md)  | Decoding Lambda Function (AWS) | ✅ | ❌ | ❌
 
+## Chirpstack V4 Codecs
+Use these codecs for implementing a decode uplink and downlink encode codec in Chirpstack V4.
+| Device | Codec | Codec Info | Description | Uplink Decode | Downlink Encode | Downlink Decode
+| --- | --- | --- | --- | :---: | :---: | :---: |
+| `hotdrop direct` | [index.js](hotdrop_direct/index.js) | [readme](hotdrop_direct/chirpstack-v4/readme.md) | Chirpstack V4 Compatible HotDrop Direct Codec | ✅ | ✅ | ✅
+| `pulsedrop direct` | [index.js](pulsedrop_direct/index.js) | [readme](pulsedrop_direct/chirpstack-v4/readme.md) | Chirpstack V4 Compatible PulseDrop Direct Codec | ✅ | ✅ | ✅
+| `voltdrop direct` | [index.js](voltdrop_direct/index.js) | [readme](voltdrop_direct/chirpstack-v4/readme.md) | Chirpstack V4 Compatible VoltDrop Direct Codec | ✅ | ✅ | ✅
+
 ## Chirpstack V3 Codecs
-Use these codecs for implementing a decode uplink and downlink encode codec in Chirpstack version 3.
+Use these codecs for implementing a decode uplink and downlink encode codec in Chirpstack V3.
 | Device | Codec | Codec Info | Description | Uplink Decode | Downlink Encode | Downlink Decode
 | --- | --- | --- | --- | :---: | :---: | :---: |
 | `hotdrop direct` | [index.js](hotdrop_direct/chirpstack-v3/index.js) | [readme](hotdrop_direct/chirpstack-v3/readme.md)  | Chirpstack v3 Compatible HotDrop Direct Codec | ✅ | ✅* | ❌
@@ -39,14 +47,7 @@ Use these codecs for implementing a decode uplink and downlink encode codec in C
 
 *\*Limited options for encoded downlinks.*
 
-## Chirpstack V4 Codecs
-You can use the Standard Codecs as-is for Chirpstack V4.
-- Create a device profile in Chirpstack for the particular device (Hotdrop, Pulsedrop or Voltdrop).
-- Copy the index.js file for that device.
-- Under `Codec` in the device profile, select `JavaScript functions` and paste the file into the `Codec functions` input box.
-- Click `Submit` at the bottom of the page.
-
-### Development Notes
+# Development Notes
  - Framework: node.js
  - Testing Framework: [jest](https://jestjs.io/)
  - Coding Standards:
