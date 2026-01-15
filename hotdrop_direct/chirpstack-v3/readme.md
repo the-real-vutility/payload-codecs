@@ -4,7 +4,7 @@ This codec targets Chirpstack V3 codecs. As a prerequisite, all data from Vutili
 
 ### To use
 - Create a device profile in Chirpstack for the Hotdrop.
-- Copy the index.js file.
+- Copy the [index.js](index.js) file.
 - Paste the index.js file into the Codec.
 
 Once again, please ensure that only Vutility Hotdrop are utilizing this device profile.
