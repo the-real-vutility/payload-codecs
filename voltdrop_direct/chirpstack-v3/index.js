@@ -35,6 +35,7 @@ function Decode(fPort, bytes, variables) {
     data: {}
   };
   var rawBytesArray = bytes;
+  var expectedLength = 0;
 
   // Packet must minimally contain an ID byte
   if (rawBytesArray.length != 0) {
@@ -46,7 +47,7 @@ function Decode(fPort, bytes, variables) {
         break;
       default: // All other packets are currently 11 bytes long
         expectedLength = 11;
-      break;
+        break;
     }
 
     if (rawBytesArray.length != expectedLength) {
@@ -61,7 +62,7 @@ function Decode(fPort, bytes, variables) {
   switch (packetId) {
     case packetList.VD_DIRECT_CONSOLIDATED_VOLTAGE_AMPERAGE: {
       var currentL1 =
-      (((rawBytesArray[11] << 8) + rawBytesArray[12]) >>> 0) / 16.0;
+        (((rawBytesArray[11] << 8) + rawBytesArray[12]) >>> 0) / 16.0;
       var currentL2 =
         (((rawBytesArray[13] << 8) + rawBytesArray[14]) >>> 0) / 16.0;
       var currentL3 =
@@ -172,12 +173,12 @@ function Decode(fPort, bytes, variables) {
       // equivalent multipliers. rawBytesArray[1] is above the 53-bit limit and intentionally ignored.
       let activeEnergyAccumulation =
         ((rawBytesArray[2] & 0x1f) * Math.pow(2, 48) +
-        rawBytesArray[3] * Math.pow(2, 40) +
-        rawBytesArray[4] * Math.pow(2, 32) +
-        rawBytesArray[5] * Math.pow(2, 24) +
-        (rawBytesArray[6] << 16) +
-        (rawBytesArray[7] << 8) +
-        rawBytesArray[8]);
+          rawBytesArray[3] * Math.pow(2, 40) +
+          rawBytesArray[4] * Math.pow(2, 32) +
+          rawBytesArray[5] * Math.pow(2, 24) +
+          (rawBytesArray[6] << 16) +
+          (rawBytesArray[7] << 8) +
+          rawBytesArray[8]);
       // At this point the value is considered unsigned but may contain a 2's compliment negative value.
       // Check sign bit and subtract to make the floating-point representation negative if needed.
       if (activeEnergyAccumulation >= Math.pow(2, 52)) {

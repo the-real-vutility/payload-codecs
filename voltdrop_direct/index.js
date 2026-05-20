@@ -39,6 +39,7 @@ function decodeUplink(input) {
   };
 
   const raw = Buffer.from(input.bytes);
+  let expectedLength = 0;
 
   // Packet must minimally contain an ID byte
   if (raw.byteLength != 0) {
@@ -50,7 +51,7 @@ function decodeUplink(input) {
         break;
       default: // All other packets are currently 11 bytes long
         expectedLength = 11;
-      break;
+        break;
     }
 
     if (raw.byteLength != expectedLength) {
@@ -58,11 +59,11 @@ function decodeUplink(input) {
       delete result.data;
       return result;
     }
- } else {
+  } else {
     result.errors.push("Empty payload");
     delete result.data;
     return result;
- }
+  }
 
   // Packet ID - 1 byte
   const packetId = raw[0];
@@ -520,8 +521,8 @@ function decodeDownlink(input) {
         if (!validIDList.includes(id)) {
           result.warnings.push(
             "Invalid packet ID " +
-              id +
-              " in transmit schedule will be replaced by gap on device"
+            id +
+            " in transmit schedule will be replaced by gap on device"
           );
         } else if (id != 0) {
           // Enforce that there is at least one non-gap packet in schedule
