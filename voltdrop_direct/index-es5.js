@@ -44,6 +44,7 @@ function decodeUplink(input) {
     warnings: [],
   };
   var rawBytesArray = input.bytes;
+  var expectedLength = 0;
 
   // Packet must minimally contain an ID byte
   if (rawBytesArray.length != 0) {
